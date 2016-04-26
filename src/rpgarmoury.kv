@@ -1,0 +1,62 @@
+WindowLayout:
+    CharacterPaneLayout:
+        id: 'MainSidebar'
+        Label:
+            text: 'Character Image'
+        GridLayout:
+            id: 'StatBox'
+            rows: 5
+            Button:
+                background_color: 1, 0, 0, 0.5
+                text: 'Character Name\nLevel, Class'
+            Button:
+                background_color: 1, 1, 0, 0.5
+                text: 'HP'
+            Button:
+                background_color: 0, 1, 0, 0.5
+                text: 'XP'
+            Button:
+                background_color: 0, 0, 1, 0.5
+                text: 'Hit Dice'
+            GridLayout:
+                cols: 3
+                Label:
+                Button:
+                    background_color: 1, 0, 1, 0.5
+                    text: 'AC'
+                Label:
+                    background_color: 0, 1, 1, 0.5
+                    text: 'Condition\nSymbols'
+
+    TabbedPanel:
+        do_default_tab: False
+        TabbedPanelItem:
+            text: 'Skills'
+            BoxLayout:
+                Label:
+                    text: 'Ability Scores\nand Skill Checks'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'Proficiencies'
+                    Label:
+                        text: 'Languages'
+                    Label:
+                        text: 'Background'
+                    Label:
+                        text: 'Conditions'
+                    Label:
+                        text: 'Miscelaneous Trackers'
+        TabbedPanelItem:
+            text: 'Inventory'
+        TabbedPanelItem:
+            text: 'Powers'
+
+
+<WindowLayout>:
+    cols: 2
+    cols_minimum: {0: self.width*2/5, 1: self.width*3/5}
+
+<CharacterPaneLayout>:
+    rows: 2
+    orientation: 'vertical'
