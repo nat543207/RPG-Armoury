@@ -1,0 +1,96 @@
+#: import SimpleTableLayout kivy.garden.simpletablelayout
+GridLayout:
+    width: 500
+    cols: 2
+    cols_minimum: {0: self.width*2/5, 1: self.width*3/5}
+    CharacterInfoPane:
+    TabbedPanel:
+        do_default_tab: False
+        SkillsTab:
+        InventoryTab:
+        PowersTab:
+
+#: import App kivy.app
+<RPGArmoury@App>:
+
+<CharacterInfoPane@GridLayout>:
+    rows: 2
+    orientation: 'vertical'
+    Label:
+        text: 'Character Image\nor\nAbility Scores'
+    GridLayout:
+        id: 'StatBox'
+        rows: 5
+        Button:
+            background_color: 1, 0, 0, 0.5
+            text: 'Character Name\nLevel, Class'
+        Button:
+            background_color: 1, 1, 0, 0.5
+            text: 'HP'
+        Button:
+            background_color: 0, 1, 0, 0.5
+            text: 'XP'
+        Button:
+            background_color: 0, 0, 1, 0.5
+            text: 'Hit Dice'
+        GridLayout:
+            cols: 3
+            Label:
+            Button:
+                background_color: 1, 0, 1, 0.5
+                text: 'AC'
+            Button:
+                background_color: 0, 1, 1, 0.5
+                text: 'Condition\nSymbols'
+
+<SkillsTab@TabbedPanelItem>:
+    text: 'Skills'
+    BoxLayout:
+        Table:
+            data: ['Skills', 'go', 'here']
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Miscelaneous Trackers'
+            Label:
+                text: 'Proficiencies'
+            Label:
+                text: 'Languages'
+            Label:
+                text: 'Background'
+            Label:
+                text: 'Conditions'
+
+#:import ListItemButton kivy.uix.listview.ListItemButton
+#:import ListAdapter kivy.adapters.listadapter.ListAdapter
+<InventoryTab@TabbedPanelItem>:
+    text: 'Inventory'
+    BoxLayout:
+        orientation: 'vertical'
+        Table:
+        Button:
+            background_color: 0.3, 0.3, 0.3, 0.5
+            text: 'Selected Item Information\n(Conditionally Visible)'
+
+<Table>:
+
+<ListItemButton>:
+    deselected_color: 0.4, 0.4, 0,4, 1
+    selected_color: 0.7, 0.7, 0.7, 1
+
+<PowersTab@TabbedPanelItem>:
+    text: 'Powers'
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Spell Slots'
+        Label:
+            text: 'Trackers (Powers Only)'
+        Label:
+            text: 'Racial Abilities'
+        Label:
+            text: 'Class Abilities'
+        Label:
+            text: 'Prepared Spells'
+        Label:
+            text: 'Weapon Attacks'

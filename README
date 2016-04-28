@@ -1,0 +1,10 @@
+An extensible Python program for managing "character sheets" for tabletop
+roleplaying games like Dungeons and Dragons, with a focus on UI/UX and sensible
+organization.  While the project is still in its infancy, planned features
+include:
+    - Pluggable support for multiple roleplaying systems and related data
+    - Convenient inventory, spellbook, and class feature management
+    - Advanced item properties (special attacks/powers, ability score
+      adjustment, trackers, etc.)
+    - Automatic rolling for powers, saving throws, attacks, and the like
+    - Database of races, classes, items, creatures, etc. included in system
