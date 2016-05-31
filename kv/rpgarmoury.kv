@@ -8,7 +8,7 @@ GridLayout:
         SkillsTab:
         InventoryTab:
         PowersTab:
-        BackgroundTab:
+        CharacterTab:
 
 #: import App kivy.app
 <RPGArmoury@App>:
@@ -95,14 +95,83 @@ GridLayout:
         Label:
             text: 'Weapon Attacks'
 
-<BackgroundTab@TabbedPanelItem>:
-    text: 'Background'
+<CharacterTab@TabbedPanelItem>:
+    text: 'Character'
     BoxLayout:
         orientation: 'vertical'
+        spacing: 2
         BoxLayout:
+            orientation: 'horizontal'
+            spacing: 2
+            GridLayout:
+                cols: 2
+                cols_minimum: {0: self.children[1].texture_size[0]+10, 1: self.width-self.children[1].texture_size[0]-10}
+                Label:
+                    text: 'Name'
+                TextInput:
+                    hint_text: 'Name'
+                Label:
+                    text: 'Gender'
+                TextInput:
+                    hint_text: 'Gender'
+                Label:
+                    text: 'Age'
+                TextInput:
+                    hint_text: 'Age'
+                Label:
+                    text: 'Height'
+                TextInput:
+                    hint_text: 'Height'
+                Label:
+                    text: 'Weight'
+                TextInput:
+                    hint_text: 'Weight'
+                Label:
+                    text: 'Eyes'
+                TextInput:
+                    hint_text: 'Eyes'
+                Label:
+                    text: 'Hair'
+                TextInput:
+                    hint_text: 'Hair'
+                Label:
+                    text: 'Skin'
+                TextInput:
+                    hint_text: 'Skin'
+                Label:
+                    text: 'Size'
+                TextInput:
+                    hint_text: 'Size'
+                Label:
+                    text: 'Vision'
+                TextInput:
+                    hint_text: 'Vision'
+                Label:
+                    text: 'Alignment'
+                TextInput:
+                    hint_text: 'Alignment'
+            RelativeLayout:
+                Label:
+                    text: 'Personality:'
+                    size: self.parent.size
+                    text_size: self.parent.size
+                    valign: 'top'
+                    halign: 'left'
+                    pos: 0,0
+                TextInput:
+                    hint_text: 'Personality'
+                    size_hint: 1, (self.parent.height-self.parent.children[1].font_size*1.15)/self.parent.height
+                    pos: 0,0
+        RelativeLayout:
             Label:
-                text: 'Character Picture'
-            Label:
-                text: 'Personality'
-        Label:
-            text: 'Bio/History'
+                text: 'Bio/History:'
+                size: self.parent.size
+                text_size: self.parent.size
+                valign: 'top'
+                halign: 'left'
+                pos: 0,0
+            TextInput:
+                hint_text: 'Bio/History'
+                size_hint: 1,(self.parent.height-self.parent.children[1].font_size*1.15)/self.parent.height
+                pos: 0,0
+
