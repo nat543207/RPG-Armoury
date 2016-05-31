@@ -1,4 +1,3 @@
-#: import SimpleTableLayout kivy.garden.simpletablelayout
 GridLayout:
     width: 500
     cols: 2
@@ -9,6 +8,7 @@ GridLayout:
         SkillsTab:
         InventoryTab:
         PowersTab:
+        BackgroundTab:
 
 #: import App kivy.app
 <RPGArmoury@App>:
@@ -94,3 +94,15 @@ GridLayout:
             text: 'Prepared Spells'
         Label:
             text: 'Weapon Attacks'
+
+<BackgroundTab@TabbedPanelItem>:
+    text: 'Background'
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            Label:
+                text: 'Character Picture'
+            Label:
+                text: 'Personality'
+        Label:
+            text: 'Bio/History'
