@@ -1,15 +1,25 @@
 # from base_rpg import RPG_System
-from yaml import YAMLObject
 
-class GameData(YAMLObject):
-    yaml_tag = '!Data'
-    def __init__(self, **kwargs):
-        for key,val in kwargs:
-            setattr(self, key, val)
+class Power(GameData):
+    yaml_tag = '!Power'
+
+class PassiveAbility(GameData):
+    yaml_tag = '!Ability'
+
+class Race(GameData):
+    yaml_tag = '!Race'
+
+class Item(GameData):
+    yaml_tag = '!Item'
 
 
-class dnd5:#(RPG_System):
-    display_name = 'Dungeons and Dragons (5e)'
+
+if __name__ == '__main__':
+    doc = yaml.load(open('dnd5.yml'))
+    print(doc)
+
+# class dnd5:#(RPG_System):
+#     display_name = 'Dungeons and Dragons (5e)'
 
 
     # class AbilityScore:
@@ -43,13 +53,6 @@ class dnd5:#(RPG_System):
     #         return self.base_ability.modifier
 
 
-
-    class Race:
-        ability_score_increases = []
-        languages = []
-        proficienceis = []
-        abilities = [] # Passives
-        powers = [] # Actives
 
 
 
@@ -105,16 +108,6 @@ class dnd5:#(RPG_System):
     #         elif name in self.stats.keys():
     #             self.stats = val
     #         super().__setattr__(name, val)
-
-
-class Power(YAMLObject):
-    yaml_tag = '!Power'
-    def __repr__(self):
-        string = "Power("
-        for key,val in self.__dict__.items():
-            string += "%s=%s, " % (key, val.strip())
-        return string + ')'
-
 
 
 

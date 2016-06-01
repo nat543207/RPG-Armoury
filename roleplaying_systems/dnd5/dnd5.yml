@@ -1,67 +1,135 @@
-Powers:
-    ? !Power &Darkvision
-        name: Darkvision
-        description: >
+Abilities: !!set #Passives that the player needs to know about, e.g. Darkvision
+    ? !Ability &Darkvision #'&' symbol indicates backreference label
+        - Darkvision
+        - description: >
             You can see in dim light within 60 feet of you as if it were bright
             light, and in darkness as if it were dim light.  You can't discern
             color in darkness, only shades of grey.
-    ? !Power &KeenSenses
-        name: Keen Senses
-    ? !Power &FeyAncestry
-        name: Fey Ancestry
-    ? !Power &Trance
-        name: Trance
+    ? !Ability &KeenSenses
+        - Keen Senses
+        - description:
+    ? !Ability &FeyAncestry
+        - Fey Ancestry
+        - description:
+    ? !Ability &Trance
+        - Trance
+        - description:
 
-Races:
-    Dwarf:
-        bonus:
-            con: 2
-        size: Medium
-        speed: 25
-        language:
-            Common: !!set
-                ? speak
-                ? read
-                ? write
-            Dwarvish: !!set
-                ? speak
-                ? read
-                ? write
-        proficiencies:
-            skills: !!set
-                ?
-            weapons: !!set
-                ?
-            tools: !!set
-                ?
-        powers: !!set
-            ? *Darkvision
-    Elf:
-        bonus: {dex: 2}
-        size: Medium
-        speed: 30
-        language:
-            Common: !!set
-                ? speak
-                ? read
-                ? write
-            Elvish: !!set
-                ? speak
-                ? read
-                ? write
-        proficiencies:
-            skills: !!set
-                ?
-            weapons: !!set
-                ?
-            tools: !!set
-                ?
-        powers: !!set
-            ? *Darkvision
+Items:
+    Armor: &AllArmor
+        Light: &LightArmor !!set
+            ? !Item
+                - Padded
+                - cost: 5g
+                  ac: 11 + DEX
+                  strength: 0
+                  stealth: False #Causes DISadvantage on stealth checks
+                  weight: 8
+            ? !Item
+                - Leather
+                - cost: 10g
+                  ac: 11 + DEX
+                  strength: 0
+                  stealth: True #DOES NOT cause DISadvantage on stealth checks
+                  weight: 10
+        Medium: &MediumArmor !!set
+            ? 
+        Heavy: &HeavyArmor !!set
+            ? 
+    Weapons: &AllWeapons
+        Simple: &Simple
+            Melee: &SimpleMelee !!set
+                ? !Item
+                    - Club
+                    - cost: 1s
+                      damage_die: 1d4
+                      damage_type: bludgeoning
+                      weight: 2
+                      properties: Light
+            Ranged: &SimpleRanged !!set
+                ? 
+        Martial: &Martial
+            Melee: &MartialMelee !!set
+                ? 
+            Ranged: &MartialRanged !!set
+                ? 
 
+Powers: !!set #Actives that the player can use, e.g. Druid's Beast Form
+    ? 
 
+Feats: !!set
+    ? 
 
-        #{
-        #    "name" : "Dungeons and Dragons (5e)"
-        #    "id" : "dnd5"
-        #    "tables" : ["Race", "Class", "Item", "Spell", "Feat", "Creature"]
+Spells: !!set
+    ? 
+
+#Races:
+#    Elf:
+#        bonus: {dex: 2}
+#        size: Medium
+#        speed: 30
+#        language:
+#            Common: !!set
+#                ? speak
+#                ? read
+#                ? write
+#            Elvish: !!set
+#                ? speak
+#                ? read
+#                ? write
+#        proficiencies:
+#            skills: !!set
+#                ?
+#            weapons: !!set
+#                ?
+#            tools: !!set
+#                ?
+#        powers: !!set
+#            ? *Darkvision
+#        subraces:
+#            #Not quite sure how to fill these in; will do later
+#    Dwarf:
+#        bonus:
+#            con: 2
+#        size: Medium
+#        speed: 25
+#        language:
+#            Common: !!set #May or may not end up needing r/w/s info
+#                ? speak
+#                ? read
+#                ? write
+#            Dwarvish: !!set
+#                ? speak
+#                ? read
+#                ? write
+#        proficiencies:
+#            skills: !!set
+#                ?
+#            weapons: !!set
+#                ?
+#            tools: !!set
+#                ?
+#        powers: !!set
+#            ? *Darkvision #Backreference to '&Darkvision' label (line 2)
+#
+#
+#Classes:
+#    Bard:
+#        hitdice: 1d8
+#        proficiencies:
+#            armor: !!set
+#                ? Light
+#            weapons: !!set #Should backref to items once they're listed
+#                ? Simple
+#                ? Hand Crossbow
+#                ? Longsword
+#                ? Rapier
+#                ? Shortsword
+#            tools:
+#                ? 3 musical instruments of your choice #Um...
+#            saves: !!set
+#                ? Dexterity
+#                ? Charisma
+#            skills: !!set #Still not sure how to choose/track proficiencies
+#                ? #Bard is weird 'cause it picks any 3; for normal classes, list
+#        #I'll figure out the rest of this later
