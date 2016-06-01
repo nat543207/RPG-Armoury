@@ -1,0 +1,67 @@
+Powers:
+    ? !Power &Darkvision
+        name: Darkvision
+        description: >
+            You can see in dim light within 60 feet of you as if it were bright
+            light, and in darkness as if it were dim light.  You can't discern
+            color in darkness, only shades of grey.
+    ? !Power &KeenSenses
+        name: Keen Senses
+    ? !Power &FeyAncestry
+        name: Fey Ancestry
+    ? !Power &Trance
+        name: Trance
+
+Races:
+    Dwarf:
+        bonus:
+            con: 2
+        size: Medium
+        speed: 25
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Dwarvish: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *Darkvision
+    Elf:
+        bonus: {dex: 2}
+        size: Medium
+        speed: 30
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Elvish: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *Darkvision
+
+
+
+        #{
+        #    "name" : "Dungeons and Dragons (5e)"
+        #    "id" : "dnd5"
+        #    "tables" : ["Race", "Class", "Item", "Spell", "Feat", "Creature"]
