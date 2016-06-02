@@ -66,22 +66,22 @@ Feats: !!set
 Powers: !!set #Actives that the player can use, e.g. Druid's Beast Form
     ? 
 
-Abilities: !!set #Passives that the player needs to know about, e.g. Darkvision
-    ? !Ability &Darkvision #'&' symbol indicates backreference label
-        - Darkvision
-        - description: >
-            You can see in dim light within 60 feet of you as if it were bright
-            light, and in darkness as if it were dim light.  You can't discern
-            color in darkness, only shades of grey.
-    ? !Ability &KeenSenses
-        - Keen Senses
-        - description:
-    ? !Ability &FeyAncestry
-        - Fey Ancestry
-        - description:
-    ? !Ability &Trance
-        - Trance
-        - description:
+#Abilities: !!set #Passives that the player needs to know about, e.g. Darkvision
+#    ? !Ability &Darkvision #'&' symbol indicates backreference label
+#        - Darkvision
+#        - description: >
+#            You can see in dim light within 60 feet of you as if it were bright
+#            light, and in darkness as if it were dim light.  You can't discern
+#            color in darkness, only shades of grey.
+#    ? !Ability &KeenSenses
+#        - Keen Senses
+#        - description:
+#    ? !Ability &FeyAncestry
+#        - Fey Ancestry
+#        - description:
+#    ? !Ability &Trance
+#        - Trance
+#        - description:
 
 #Races:
 #    Elf:

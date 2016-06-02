@@ -16,11 +16,6 @@ class Item(rpg.Object):
     yaml_tag = '!Item'
 
 
-
-if __name__ == '__main__':
-    doc = yaml.load(open('dnd5.yml'))
-    print(doc)
-
 # class dnd5:#(RPG_System):
 #     display_name = 'Dungeons and Dragons (5e)'
 

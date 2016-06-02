@@ -1,8 +1,10 @@
 import yaml
 
 class GameDataMeta(yaml.YAMLObjectMetaclass):
+    dataclasses = {}
     def __init__(cls, name, bases, kwds):
         super().__init__(name, bases, kwds)
+        GameDataMeta.dataclasses[name] = cls
         cls.__repr__ = GameDataMeta.__repr__
 
     def __repr__(cls):
