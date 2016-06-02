@@ -11,6 +11,11 @@ Powers:
         name: Fey Ancestry
     ? !Power &Trance
         name: Trance
+    ? !Power &HalflingNimbleness
+        name: Halfling Nimbleness
+    ? !Power &BreathWeapon
+        name: Breath Weapon
+    ? !Power &DamageResistance
 
 Races:
     Dwarf:
@@ -37,7 +42,8 @@ Races:
         powers: !!set
             ? *Darkvision
     Elf:
-        bonus: {dex: 2}
+        bonus:
+            dex: 2
         size: Medium
         speed: 30
         language:
@@ -58,6 +64,372 @@ Races:
                 ?
         powers: !!set
             ? *Darkvision
+    Halfling:
+        bonus:
+            dex: 2
+        size: Small
+        speed: 25
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Halfling: !! set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *HalflingNimbleness
+    Dragonborn:
+        bonus:
+            str: 2
+            cha: 1
+        size: Medium
+        speed: 30
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Draconic: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *BreathWeapon
+            ? *DamageResistance
+    Gnome:
+        bonus:
+            int: 2
+        size: Small
+        speed: 25
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Gnomish: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *Darkvision
+    HalfOrc:
+        bonus:
+            str: 2
+            con: 1
+        size: Medium
+        speed: 30
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Orc: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *Darkvision
+    Tiefling:
+        bonus:
+            int: 1
+            cha: 2
+        size: Medium
+        speed: 30
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Infernal: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *Darkvision
+
+Classes:
+    Barbarian:
+        hitdice: d12
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? mmelee
+                ? sranged
+                ? mranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? str
+                ? con
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Bard:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? hand crossbow
+                ? longsword
+                ? rapier
+                ? shortsword
+            tools: !!set
+                ? musical instrument
+                ? musical instrument
+                ? musical instrument
+            savingthrows: !!set
+                ? dex
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Cleric:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? sranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? wis
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Druid:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? shields
+            weapons: !!set
+                ? club
+                ? dagger
+                ? dart
+                ? javelin
+                ? mace
+                ? quarterstaff
+                ? scimitar
+                ? sickle
+                ? sling
+                ? spear
+            tools: !!set
+                ? herbalism kit
+            savingthrows: !!set
+                ? int
+                ? wis
+        equipment: !!set
+            ?
+    Fighter:
+        hitdice: d10
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? heavy
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? mmelee
+                ? mranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? str
+                ? con
+        equipment: !!set
+            ?
+    Monk:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? smelee
+                ? sranged
+                ? shortsword
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? str
+                ? dex
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Paladin:
+        hitdice: d10
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? heavy
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? mmelee
+                ? mranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? wis
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Ranger:
+        hitdice: d10
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? mmelee
+                ? mranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? str
+                ? dex
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Rogue:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? hand crossbow
+                ? longsword
+                ? rapier
+                ? shortsword
+            tools: !!set
+                ? thieves tools
+            savingthrows: !!set
+                ? dex
+                ? int
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Sorceror:
+        hitdice: d6
+        proficiencies:
+            armor: !!set
+                ?
+            weapons: !!set
+                ? dagger
+                ? dart
+                ? sling
+                ? quarterstaff
+                ? light crossbow
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? con
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Warlock:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+            weapons: !!set
+                ? smelee
+                ? sranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? wis
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Wizard:
+        hitdice: d6
+        proficiencies:
+            armor: !!set
+                ?
+            weapons: !!set
+                ? dagger
+                ? dart
+                ? sling
+                ? quarterstaff
+                ? light crossbow
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? int
+                ? wis
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
 
 
 
