@@ -1,15 +1,18 @@
-# from base_rpg import RPG_System
+import core.rpg as rpg
 
-class Power(GameData):
-    yaml_tag = '!Power'
 
-class PassiveAbility(GameData):
+
+
+class PassiveAbility(rpg.Power):
     yaml_tag = '!Ability'
 
-class Race(GameData):
+class Race(rpg.Group):
     yaml_tag = '!Race'
 
-class Item(GameData):
+class Class(rpg.Group):
+    pass
+
+class Item(rpg.Object):
     yaml_tag = '!Item'
 
 

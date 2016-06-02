@@ -1,5 +1,4 @@
 from kivy.app import App
-from kivy.lang import Builder
 from kivy.uix.listview import ListView, ListItemButton
 from kivy.adapters.listadapter import ListAdapter
 from kivy.properties import ListProperty, ObjectProperty
@@ -14,7 +13,7 @@ class Table(ListView):
     # data = ListProperty(['Test2'])
 
     def __init__(self, **kwargs):
-        print(kwargs)
+        # print(kwargs)
         super(Table, self).__init__(**kwargs)
         # TODO Figure out why self.adapter refuses to populate from the
         # values provided in rpgarmoury.kv when adapter initialized
@@ -22,8 +21,7 @@ class Table(ListView):
         # print(self.data)
 
 class RPGArmoury(App):
-    kv_directory = '../kv'
+    pass
 
-
-if __name__ == '__main__':
+def launch():
     RPGArmoury().run()
