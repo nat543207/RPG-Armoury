@@ -1,7 +1,11 @@
+"""Top-level abstractions of RPG game data"""
+
 from .datastore import GameData
 
-class RPGSystem(GameData):
-    """Top-level abstractions of RPG game data"""
+class System(GameData):
+    """A game system that defines the items, creatures, powers, and other
+    rules of an RPG.  Mostly, this will operate as a container for game-
+    specific data types."""
     pass
 
 class Creature(GameData):
