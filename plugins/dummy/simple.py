@@ -4,8 +4,10 @@ class Meta(type):
         self.__getattr__ = Meta.__getattr__
         self.__getitem__ = Meta.__getitem__
 
-    def __contains__(self, val):
-        if val in self.__dict__:
+    def __contains__(self, key):
+        if key in self.__dict__:
+            return True
+        if key in self.stats: #len([v for v in self.__dict__.values() if key in v]) != 0:
             return True
         return False
 
@@ -13,14 +15,14 @@ class Meta(type):
         if key in self.__dict__:
             return self.__dict__[key]
         if key in self.stats:
-            val = sum([v[key] for v in self.__dict__.values() if key in v])
+            val = self.stats[key] #[v[key] for v in self.__dict__.values() if key in v]
             return val
-        raise IndexError
+        raise KeyError
 
     def __getattr__(self, attr):
         try:
             return self.__getitem__(self, attr)
-        except IndexError:
+        except KeyError:
             raise AttributeError
 
 
@@ -35,32 +37,26 @@ class Character():
     def __repr__(self):
         return str(self.stats)
 
-    def __contains__(self, val):
-        if val in self.__dict__:
-            return True
-        return False
-
     def __getitem__(self, key):
         if key in self.__dict__:
             return self.__dict__[key]
         if key in self.stats:
             val = sum([v[key] for v in self.__dict__.values() if key in v])
             return val
-        raise IndexError
+        raise KeyError
 
     def __getattr__(self, attr):
         try:
             return self.__getitem__(attr)
-        except IndexError:
+        except KeyError:
             raise AttributeError
 
 
 class Race(metaclass=Meta):
-    stats = {'dex' : '2'}
-    str = 2
+    stats = {'dex' : 2}
 
 class Class(metaclass=Meta):
-    str = 1
+    stats = {'str' : 1}
 
 
 
