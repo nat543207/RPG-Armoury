@@ -3,18 +3,70 @@ import core.rpg as rpg
 
 
 
-class PassiveAbility(rpg.Power):
+class PassivePower(rpg.Power):
     yaml_tag = '!Ability'
 
 class Race(rpg.Group):
     yaml_tag = '!Race'
 
 class Class(rpg.Group):
-    pass
+    yaml_tag = '!Class'
 
 class Item(rpg.Object):
     yaml_tag = '!Item'
 
+class Character():
+    def __init__(self, race, cls, background, **stats):
+        print("%s, %s, %s" % (race.__dict__, cls.__dict__, background.__dict__))
+        self.race = race
+        self.cls = cls
+        self.background = background
+        self.inventory = []
+        # self.hp = 0
+        # self.spellslots = (0, 0, 0, 0, 0, 0, 0, 0, 0)
+        self.spellsprepared = {}
+        self.feats = {}
+        self.itemslots = {}
+        self.description = {}
+        # self.ac = 0
+
+        self.scores = stats
+        self.hitdice = {}
+        self.spellbook = {}
+        self.proficiencies = {}
+        self.languages = {}
+        self.powers = {}
+        self.passivepowers = {}
+        self.speed = {}
+        self.skills = {}
+        self.size = {}
+
+
+    def __getattribute__(self, attr):
+        get = super().__getattribute__
+        dct = get('__dict__')
+        val = None
+        if attr in dct:
+            val = dct[attr]
+        for k,v in dct.items():
+            # try:
+            if attr in v:
+                val = Character.combine(val, v[attr])
+            # except TypeError:
+            #     print("%s : %s" % (k, v.__class__))
+        return val
+
+    @staticmethod
+    def combine(v1, v2):
+        if v1 is None:
+            return v2
+        if v2 is None:
+            return v1
+        if isinstance(v1, int) and isinstance(v2, int):
+            return v1 + v2
+        if isinstance(v1, set) and isinstance(v2, set):
+            return v1 | v2
+        raise TypeError
 
 # class dnd5:#(RPG_System):
 #     display_name = 'Dungeons and Dragons (5e)'
