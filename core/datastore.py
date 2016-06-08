@@ -36,13 +36,14 @@ class GameDataMeta(yaml.YAMLObjectMetaclass):
 
 
 class GameData(yaml.YAMLObject, metaclass=GameDataMeta):
-    yaml_tag = '!Data'
+    yaml_tag = '!Dataset'
 
     @classmethod
     def from_yaml(cls, loader, node):
-        data = loader.construct_sequence(node, deep=True)
-        val = type(data[0], (cls,), data[1])
-        return val
+        data = loader.construct_mapping(node, deep=True)
+        # val = type(data[0], (cls,), data[1])
+        # return val
+        return data
 
     def __getattribute__(self, attr):
         if attr in __dict__:
