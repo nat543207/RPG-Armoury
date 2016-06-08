@@ -6,8 +6,8 @@ class Character():
         + 6 ability scores
         + 1 race
             + Subrace?
-        + 1? background
         + 1+ class(es)
+        + 1? background
         + inventory
 
         Derrived values:
@@ -32,22 +32,22 @@ class Character():
         + Personal History
         """
     def __init__(self, **kwargs):
-        self.scores = {'dex' : 12}    #Empty dict
-        self.race = {}    #Classref
-        self.background = {} #Classref
-        self.classes = [()] #List of tuples, (level, classref).  Order matters for classing.
-        self.inventory = [] #List of Item objects - instances of Item subclasses
-        self.hp = {}      #Property of some kind
-        self.hitdice = {()} #Set of tuples, (number, die)
-        self.spellslots = (0, 0, 0, 0, 0, 0, 0, 0) #9-tuple of ints
-        self.spellbook = {} #Set of classrefs to known spells
-        self.preparedspells = {} #Set of classrefs to prepared spells
-        self.proficiencies = {} #Set - only chosen, not granted
-        self.languages = {} #Dict of name:proficiency pairs - only chosen, not granted by race/class
-        self.feats = {}     #Set of classrefs
-        self.powers = {()}  #Set of tuples, (uses, classref)
-        self.slots = {}     #Equipemnt slots
-        self.description = {} #Dict to hold descriptions of character apperance, personality, etc.
+        self.scores = dict(str() : int()) #Empty dict
+        self.race = type() #Classref
+        self.classes = set(tuple(int(), type())) #List of tuples, (level, classref).  Order matters for classing, implemented by special multiclass classes
+        self.background = type() #Classref
+        self.inventory = list(object()) #List of Item objects - instances of Item subclasses
+        self.hp = type() #Property of some kind
+        self.hitdice = list(tuple(int(), type())) #Set of tuples, (number, die)
+        self.spellslots = tuple(0, 0, 0, 0, 0, 0, 0, 0) #9-tuple of ints
+        self.spellbook = set(type()) #Set of classrefs to known spells
+        self.preparedspells = set(type()) #Set of classrefs to prepared spells
+        self.proficiencies = set(type()) #Set - only chosen, not granted
+        self.languages = dict(str()=set()) #Dict of name:proficiency pairs - only chosen, not granted by race/class
+        self.feats = set(type()) #Set of classrefs
+        self.powers = set(tuple(int, type())) #Set of tuples, (uses, classref)
+        self.slots = dict(str() : object()) #Equipemnt slots
+        self.description = dict() #Dict to hold descriptions of character apperance, personality, etc.
 
         #Other accessible attributes, calculable from given data:
         # self.ac = 0

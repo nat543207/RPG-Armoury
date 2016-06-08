@@ -27,13 +27,13 @@ class Object(GameData):
     yaml_tag = '!Object'
 
 
-class Attribute:
+class Attribute(GameData):
     """A quality or property of a thing, such as an ability score, an
     enchantment, a status effect, or the like."""
     yaml_tag = '!Attribute'
 
 
-class Power:
+class Power(GameData):
     """An activated skill, ability, attack, etc. that a creature has
     access to."""
     yaml_tag = '!Power'

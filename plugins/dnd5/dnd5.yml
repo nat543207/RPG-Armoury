@@ -65,23 +65,23 @@ Feats: !!set
 
 Powers: !!set
     ? !Power &Darkvision
-        name: Darkvision
-        description: >
+        - Darkvision
+        - description: >
             You can see in dim light within 60 feet of you as if it were bright
             light, and in darkness as if it were dim light.  You can't discern
             color in darkness, only shades of grey.
     ? !Power &KeenSenses
-        name: Keen Senses
-        description: >
+        - Keen Senses
+        - description: >
             You have proficiency in the perception skill.
     ? !Power &FeyAncestry
-        name: Fey Ancestry
-        description: >
+        - Fey Ancestry
+        - description: >
             You have advantage on saving throws against being charmed, and magic
             can't put you to sleep.
     ? !Power &Trance
-        name: Trance
-        description: >
+        - Trance
+        - description: >
             You don't need to sleep. Instead, you meditate deeply, remaining
             semiconscious, for 4 hours a day. While meditating you can dream
             after a fashion; such dreams are actually mental exercises that have
@@ -89,19 +89,19 @@ Powers: !!set
             way, you gain the same benefit that another being does from 8 hours
             of sleep.
     ? !Power &HalflingNimbleness
-        name: Halfling Nimbleness
-        description: >
+        - Halfling Nimbleness
+        - description: >
             You can move through the space of any creature that is of a size
             larger than yours.
     ? !Power &DraconicAncestry
-        name: Draconic Ancestry
-        description: >
+        - Draconic Ancestry
+        - description: >
             You have draconic ancestry. Choose one type of dragon from the
             draconic ancestry table. Your breath weapon and damage resistance
             are determined by the dragon type, as shown in the table.
     ? !Power &BreathWeapon
-        name: Breath Weapon
-        description: >
+        - Breath Weapon
+        - description: >
             You can use your action to exhale destructive energy. Your draconic
             ancestry determines the size, shape, and damage type of the
             exhalation.
@@ -117,146 +117,147 @@ Powers: !!set
             After you use your breath weapon, you can't use it again until you
             complete a short or long rest.
     ? !Power &DraconicDamageResistance
-        name: Damage Resistance
-        description: >
+        - Damage Resistance
+        - description: >
             You have resistance to the damage type associated with your draconic
             ancestry.
     ? !Power &DwarvenResilience
-        name: Dwarven Resilience
-        description: >
+        - Dwarven Resilience
+        - description: >
             You have advantage on saving throws against poison, and you have
             resistance against poison damage.
     ? !Power &DwarvenCombatTraining
-        name: Dwarven Combat Training
-        description: >
+        - Dwarven Combat Training
+        - description: >
             You have proficiency with the battleaxe, handaxe, throwing hammer,
             and warhammer.
     ? !Power &DwarvenToughness
-        name: Dwarven Toughness
-        description: >
+        - Dwarven Toughness
+        - description: >
             Your hit point maximum increases by 1, and it increases by 1 every
             time you gain a level.
     ? !Power &DwarvenArmorTraining
-        name: Dwarven Armor Training
-        description: >
+        - Dwarven Armor Training
+        - description: >
             You have proficiency in light and medium armor.
     ? !Power &ElfWeaponTraining
-        name: Elf Weapon Training
-        description: >
+        - Elf Weapon Training
+        - description: >
             You have proficiency with the longsword, shortsword, shortbow, and
             longbow.
     ? !Power &ExtraCantrip
-        name: Cantrip
-        description: >
+        - Cantrip
+        - description: >
             You know one cantrip of your choice from the wizard spellcasting
             list. Intelligience is your spellcasting ability for it.
     ? !Power &ExtraLanguage
-        name: Extra Language
-        description: >
+        - Extra Language
+        - description: >
             You can speak, read, and write one extra language of your choice.
     ? !Power &FleetOfFoot
-        name: Fleet of Foot
-        description: >
+        - Fleet of Foot
+        - description: >
             Your base walking speed increases to 35 feet.
     ? !Power &MaskOfTheWild
-        name: Mask of the Wild
-        description: >
+        - Mask of the Wild
+        - description: >
             You can attempt to hide even when you are only lightly obscured by
             foliage, heavy rain, falling snow, mist, and other natural
             phenomena.
     ? !Power &SuperiorDarkvision
-        name: Superior Darkvision
-        description: >
+        - Superior Darkvision
+        - description: >
             Your darkvision has a radius of 120 feet.
     ? !Power &SunlightSensitivity
-        name: Sunlight Sensitivity
-        description: >
+        - Sunlight Sensitivity
+        - description: >
             You have disadvantage on attack roll and on Wisdom(Perception)
             checks that rely on sight when you, the target of your attack, or
             whatever you are trying to perceive is in direct sunlight.
     ? !Power &DrowMagic
-        name: Drow Magic
-        description: >
+        - Drow Magic
+        - description: >
             You know the dancing lights cantrip. When you reach third level, you
             can cast the faerie fire spell once per day. When you reach fifth
             level, you can also cast the darkness spell once per day. Charisma
             is your spellcasting ability for these spells.
     ? !Power &DrowWeaponTraining
-        name: Drow Weapon Training
-        description: >
+        - Drow Weapon Training
+        - description: >
             You have proficiency in with the rapier, shortsword, and hand
             crossbow.
     ? !Power &LuckyPower
-        name: Lucky
-        description: >
+        - Lucky
+        - description: >
             When you roll a 1 on an attack roll, ability check, or saving throw,
             you can reroll the die, and must use the new roll.
     ? !Power &Brave
-        name: Brave
-        description: >
+        - Brave
+        - description: >
             You have advantage on saving throws agains being frightened.
     ? !Power &NaturallyStealthy
-        name: Naturally Stealthy
-        description: >
+        - Naturally Stealthy
+        - description: >
             You can attempt to hide even when you are obscured only by a
             creature that is at lease one size larger than you.
-    ? !Power &StoutResilience
-        <<: *DwarvenResilience
-        name: Stout Resilience
+    ? !Power &StoutResilience #*DwarvenResilience
+        - Stout Resilience
+        - description: >
+            Actually the same as Dwarven Resilience
     ? !Power &GnomeCunning
-        name: Gnome Cunning
-        description: >
+        - Gnome Cunning
+        - description: >
             You have advantage on all intelligence, wisdom, and charisma saving
             throws against magic.
     ? !Power &Menacing
-        name: Menacing
-        description: >
+        - Menacing
+        - description: >
             You gain proficiency in the intimidation skill.
     ? !Power &RelentlessEndurance
-        name: Relentless Endurance
-        description: >
+        - Relentless Endurance
+        - description: >
             When you are reduced to 0 hitpoints, but not killed outright, you
             can drop to 1 hit point instead. You can't use this feature again
             until you finish a long rest.
     ? !Power &SavageAttacks
-        name: Savage Attacks
-        description: >
+        - Savage Attacks
+        - description: >
             When you score a critical hit with a melee weapon attack, you can
             roll one of the weapon's damage dice one additional time and add it
             to the extra damage of the critical hit.
     ? !Power &HellishResistance
-        name: Hellish Resistance
-        description: >
+        - Hellish Resistance
+        - description: >
             You have resistance to fire damage.
     ? !Power &InfernalLegacy
-        name: Infernal Legacy
-        description: >
+        - Infernal Legacy
+        - description: >
             You know the thaumaturgy cantrip. Once you reach 3rd level, you can
             cast the hellish rebuke spell once per day as a 2nd level spell.
             Once you reach 5th level, you can also cast the darkness spell once
             per day. Charisma is your spellcasting ability for these spells.
     ? !Power &NaturalIllusionist
-        name: Natural Illusionist
-        description: >
+        - Natural Illusionist
+        - description: >
             You knwo the minor illusion cantrip. Intelligence is your
             spellcasting ability for it.
     ? !Power &SpeakWithSmallBeasts
-        name: Speak with Small Beasts
-        description: >
+        - Speak with Small Beasts
+        - description: >
             Through sounds and gestures, you can communicate simple ideas with
             small or smaller beasts. Forest gnomes love animals and often keep
             squirrels, badgers, rabbits, moles, woodpeckers, and other creatures
-            as beloved pets. 
+            as beloved pets.
     ? !Power &ArtificersLore
-        name: Artificer's Lore
-        description: >
+        - Artificer's Lore
+        - description: >
             Whenever you make an intelligence(history) check related to magic
             items, alchemical objects, or technological devices, you can add
             twice your proficiency bonus, instead of any proficiency bonus you
             would apply.
     ? !Power &Tinker
-        name: Tinker
-        description: >
+        - Tinker
+        - description: >
             You have proficiency with artisan's tools(tinker's tools). Using
             those tools, you can spend 1 hour and 10 gp worth of materials to
             construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to
@@ -267,7 +268,7 @@ Powers: !!set
 
             When you create a device, choose one of the following options
 
-            Clockwork Toy. This toy is a clockwork animal, monster, or person, 
+            Clockwork Toy. This toy is a clockwork animal, monster, or person,
             such as a frog, mouse, bird, dragon, or soldier. When placed on the
             ground, the toy moves 5 feet across the gound on each of your turns
             in a random direction. It makes noises as appropriate to the
@@ -281,67 +282,69 @@ Powers: !!set
             moderate volume. The box stops playing when it reaces the song's end
             or when it's closed.
     ? !Power &SkillVersatility
-        name: Skill Versatility
-        description: >
+        - Skill Versatility
+        - description: >
             You gain proficiency in two skills of your choice.
 
-Races:
-    Dwarf:
-        bonus:
-            con: 2
-        size: Medium
-        speed: 25
-        language:
-            Common: !!set
-                ? speak
-                ? read
-                ? write
-            Dwarvish: !!set
-                ? speak
-                ? read
-                ? write
-        proficiencies:
-            skills: !!set
-                ?
-            weapons: !!set
-                ? battleaxe
-                ? handaxe
-                ? throwing hammer
-                ? warhammer
-            tools: !!set
-                ?
-        powers: !!set
-            ? *Darkvision
-            ? *DwarvenResilience
-            ? *DwarvenCombatTraining
-    Elf:
-        bonus:
-            dex: 2
-        size: Medium
-        speed: 30
-        language:
-            Common: !!set
-                ? speak
-                ? read
-                ? write
-            Elvish: !!set
-                ? speak
-                ? read
-                ? write
-        proficiencies:
-            skills: !!set
-                ? perception
-            weapons: !!set
-                ?
-            tools: !!set
-                ?
-        powers: !!set
-            ? *Darkvision
-            ? *KeenSenses
-            ? *FeyAncestry
-            ? *Trance
+Races: !!set
+    ? !Race
+        - Dwarf
+        - stats:
+              con: 2
+          size: Medium
+          speed: 25
+          language:
+              Common: !!set
+                  ? speak
+                  ? read
+                  ? write
+              Dwarvish: !!set
+                  ? speak
+                  ? read
+                  ? write
+          proficiencies:
+              skills: !!set
+                  ?
+              weapons: !!set
+                  ? battleaxe
+                  ? handaxe
+                  ? throwing hammer
+                  ? warhammer
+              tools: !!set
+                  ?
+          powers: !!set
+              ? *Darkvision
+              ? *DwarvenResilience
+              ? *DwarvenCombatTraining
+    ? !Race
+        - Elf
+        - stats:
+              dex: 2
+          size: Medium
+          speed: 30
+          language:
+              Common: !!set
+                  ? speak
+                  ? read
+                  ? write
+              Elvish: !!set
+                  ? speak
+                  ? read
+                  ? write
+          proficiencies:
+              skills: !!set
+                  ? perception
+              weapons: !!set
+                  ?
+              tools: !!set
+                  ?
+          powers: !!set
+              ? *Darkvision
+              ? *KeenSenses
+              ? *FeyAncestry
+              ? *Trance
     Halfling:
-        bonus:
+        stats:
             dex: 2
         size: Small
         speed: 25
@@ -350,7 +353,7 @@ Races:
                 ? speak
                 ? read
                 ? write
-            Halfling: !! set
+            Halfling: !!set
                 ? speak
                 ? read
                 ? write
@@ -366,7 +369,7 @@ Races:
             ? *Brave
             ? *HalflingNimbleness
     Dragonborn:
-        bonus:
+        stats:
             str: 2
             cha: 1
         size: Medium
@@ -392,7 +395,7 @@ Races:
             ? *BreathWeapon
             ? *DraconicDamageResistance
     Gnome:
-        bonus:
+        stats:
             int: 2
         size: Small
         speed: 25
@@ -416,7 +419,7 @@ Races:
             ? *Darkvision
             ? *GnomeCunning
     HalfOrc:
-        bonus:
+        stats:
             str: 2
             con: 1
         size: Medium
@@ -443,7 +446,7 @@ Races:
             ? *RelentlessEndurance
             ? *SavageAttacks
     Tiefling:
-        bonus:
+        stats:
             int: 1
             cha: 2
         size: Medium
@@ -469,7 +472,7 @@ Races:
             ? *HellishResistance
             ? *InfernalLegacy
 
-Classes:
+Classes: !!set
     Barbarian:
         hitdice: d12
         proficiencies:
@@ -616,27 +619,28 @@ Classes:
                 ?
         equipment: !!set
             ?
-    Ranger:
-        hitdice: d10
-        proficiencies:
-            armor: !!set
-                ? light
-                ? medium
-                ? shields
-            weapons: !!set
-                ? smelee
-                ? sranged
-                ? mmelee
-                ? mranged
-            tools: !!set
-                ?
-            savingthrows: !!set
-                ? str
-                ? dex
-            skills: !!set
-                ?
-        equipment: !!set
-            ?
+    ? !Class
+        - Ranger
+        - hitdice: d10
+          proficiencies:
+              armor: !!set
+                  ? light
+                  ? medium
+                  ? shields
+              weapons: !!set
+                  ? smelee
+                  ? sranged
+                  ? mmelee
+                  ? mranged
+              tools: !!set
+                  ?
+              savingthrows: !!set
+                  ? str
+                  ? dex
+              skills: !!set
+                  ?
+          equipment: !!set
+              ?
     Rogue:
         hitdice: d8
         proficiencies:

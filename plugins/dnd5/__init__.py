@@ -3,6 +3,9 @@ import core.rpg as rpg
 
 
 
+class ActivePower(rpg.Power):
+    yaml_tag = '!Power'
+
 class PassivePower(rpg.Power):
     yaml_tag = '!Ability'
 
@@ -16,11 +19,11 @@ class Item(rpg.Object):
     yaml_tag = '!Item'
 
 class Character():
-    def __init__(self, race, cls, background, **stats):
-        print("%s, %s, %s" % (race.__dict__, cls.__dict__, background.__dict__))
+    def __init__(self, race, cls, **stats):
+        # print("%s, %s, %s" % (race.__dict__, cls.__dict__, background.__dict__))
         self.race = race
         self.cls = cls
-        self.background = background
+        # self.background = background
         self.inventory = []
         # self.hp = 0
         # self.spellslots = (0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -39,7 +42,7 @@ class Character():
         self.passivepowers = {}
         self.speed = {}
         self.skills = {}
-        self.size = {}
+        # self.size = {}
 
 
     def __getattribute__(self, attr):
