@@ -4,7 +4,8 @@ import plugins.dnd5 as system
 import yaml
 # gui.launch()
 
-# doc = yaml.load(open('plugins/dnd5/dnd5.yml'))
+print(core.datastore.GameDataMeta.dataclasses)
+doc = yaml.load(open('plugins/dnd5/dnd5.yml'))
 # print(doc)
 
 # elf = core.datastore.GameDataMeta.dataclasses['Elf']
@@ -12,19 +13,15 @@ import yaml
 # c = system.Character(elf, ranger, str=10, dex=10, int=10, wis=10, con=10, cha=10)
 # print(elf)
 # print(ranger)
-# print(c.size)
+# print(c.proficiencies)
 
+# class Test:
+#     def __init__(self):
+#         self.a = 1
+#         self.b = 2
+#         self.imabool = True
 
-# out = yaml.Dumper(open('test.yml'))
-# node = yaml.MappingNode(tag='tag:yaml.org,2002:map', value=[(yaml.ScalarNode(tag='tag:yaml.org,2002:str', value='Item')), (yaml.ScalarNode(tag='tag:yaml.org,2002:str', value='Test'))])
-# print(node)
+# tmp = Test()
+# tmp.contained = Test()
 
-
-# No accidental type masking:
-# a = type('Test', (object,), {})
-# b = type('Test', (object,), {'attr' : 1})
-# t1 = a()
-# t2 = b()
-# print(t1.__class__)
-# print(t2.__class__)
-# print(t1.__class__ is t2.__class__)
+# print(yaml.dump(tmp, default_flow_style=False))

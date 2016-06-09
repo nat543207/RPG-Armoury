@@ -1,5 +1,6 @@
 Item:
     Armor: &AllArmor
+<<<<<<< Updated upstream
         Light: &LightArmor
             Padded:   #Name of the entry
                 cost: 5g  #Dictionary nested in the list, containing game info
@@ -111,6 +112,7 @@ Item:
         #     successful one. The damage increases to 3d6 at 6th level, 4d6 at
         #     11th level, and 5d6 at 16th level.
 
+<<<<<<< Updated upstream
         #     After you use your breath weapon, you can't use it again until you
         #     complete a short or long rest.
     # ? !Power &DraconicDamageResistance
@@ -262,9 +264,9 @@ Item:
         #     keep the device functioning), or when you use your action to
         #     dismantle it; at that time, you can reclaim the materials used to
         #     create it. You can have up to three such devices active at a time.
-
         #     When you create a device, choose one of the following options
 
+<<<<<<< Updated upstream
         #     Clockwork Toy. This toy is a clockwork animal, monster, or person,
         #     such as a frog, mouse, bird, dragon, or soldier. When placed on the
         #     ground, the toy moves 5 feet across the gound on each of your turns

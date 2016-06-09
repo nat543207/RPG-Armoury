@@ -19,19 +19,19 @@ class Item(rpg.Object):
     yaml_tag = '!Item'
 
 class Character():
-    def __init__(self, race, cls, **stats):
+    def __init__(self, race, cls, background=None, **stats):
         # print("%s, %s, %s" % (race.__dict__, cls.__dict__, background.__dict__))
         self.race = race
         self.cls = cls
-        # self.background = background
+        self.background = background
         self.inventory = []
-        # self.hp = 0
+        self.hp = 0
         # self.spellslots = (0, 0, 0, 0, 0, 0, 0, 0, 0)
         self.spellsprepared = {}
         self.feats = {}
         self.itemslots = {}
         self.description = {}
-        # self.ac = 0
+        self.ac = 0
 
         self.scores = stats
         self.hitdice = {}
@@ -51,12 +51,12 @@ class Character():
         val = None
         if attr in dct:
             val = dct[attr]
-        for k,v in dct.items():
-            # try:
-            if attr in v:
-                val = Character.combine(val, v[attr])
-            # except TypeError:
-            #     print("%s : %s" % (k, v.__class__))
+        for v in (i for i in dct.values() if hasattr(i, '__contains__')):
+            try:
+                if attr in v:
+                    val = Character.combine(val, v[attr])
+            except TypeError:
+                print(str(v))
         return val
 
     @staticmethod
@@ -69,7 +69,7 @@ class Character():
             return v1 + v2
         if isinstance(v1, set) and isinstance(v2, set):
             return v1 | v2
-        raise TypeError
+        raise NotImplementedError
 
 # class dnd5:#(RPG_System):
 #     display_name = 'Dungeons and Dragons (5e)'
