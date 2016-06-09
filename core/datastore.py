@@ -29,9 +29,11 @@ class DeepDataStructure():
 
 class GameDataMeta(yaml.YAMLObjectMetaclass):
     dataclasses = {}
+    reserved_tags = set()
     def __init__(cls, name, bases, kwds):
         super().__init__(name, bases, kwds)
         GameDataMeta.dataclasses[name] = cls
+        GameDataMeta.reserved_tags |= {cls.yaml_tag}
 
     def __repr__(cls):
         return "%s(%s)" % (cls.__name__ , ', '.join("%s=%s" % (k,v)
@@ -46,15 +48,33 @@ class GameType(yaml.YAMLObject, metaclass=GameDataMeta):
     def from_yaml(cls, loader, node):
         # print(cls)
         # print(node)
-        key, val = node.value[0]
-        print(key)
-        print(val)
+        for item in node.value:
+            key, val = item
+            key = loader.construct_object(key)
+            val = loader.construct_object(val)
+            # if val.tag is not '!Data': #not in GameDataMeta.reserved_tags:
+            #     pass
+            print(key)
+            print(val)
+        return 
 
-    def __getattribute__(self, attr):
-        if attr in __dict__:
-            return __dict__[attr]
+    @staticmethod
+    def construct(node, loader):
+        if isinstance(node, yaml.ScalarNode):
+            return loader.construct_scalar(node)
+        elif isinstance(node, yaml.SequenceNode):
+            return loader.construct_sequence(node)
+        elif isinstance(node, yaml.MappingNode):
+            return loader.construct_mapping(node)
         else:
-            return None
+            raise TypeError
+
+
+    # def __getattribute__(self, attr):
+    #     if attr in __dict__:
+    #         return __dict__[attr]
+    #     else:
+    #         return None
 
 
 class GameDataType(GameType):

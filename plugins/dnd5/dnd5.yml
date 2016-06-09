@@ -1,8 +1,7 @@
 Item:
     Armor: &AllArmor
-<<<<<<< Updated upstream
         Light: &LightArmor
-            Padded:   #Name of the entry
+            Padded: !Data   #Name of the entry
                 cost: 5g  #Dictionary nested in the list, containing game info
                 ac: 11 + DEX #I'll find a better representation for this later
                 strength: 0 #For missing/empty requirement
@@ -103,7 +102,6 @@ Item:
         #     You can use your action to exhale destructive energy. Your draconic
         #     ancestry determines the size, shape, and damage type of the
         #     exhalation.
-
         #     When you use your breath weapon, each creature in the area of the
         #     exhalation must make a saving throw, the type of which is determined
         #     by your draconic ancestry. The DC for the saving throw equals 8 +
@@ -111,8 +109,6 @@ Item:
         #     takes 2d6 damage on a failed save, and half as much damage on a
         #     successful one. The damage increases to 3d6 at 6th level, 4d6 at
         #     11th level, and 5d6 at 16th level.
-
-<<<<<<< Updated upstream
         #     After you use your breath weapon, you can't use it again until you
         #     complete a short or long rest.
     # ? !Power &DraconicDamageResistance
@@ -265,18 +261,14 @@ Item:
         #     dismantle it; at that time, you can reclaim the materials used to
         #     create it. You can have up to three such devices active at a time.
         #     When you create a device, choose one of the following options
-
-<<<<<<< Updated upstream
         #     Clockwork Toy. This toy is a clockwork animal, monster, or person,
         #     such as a frog, mouse, bird, dragon, or soldier. When placed on the
         #     ground, the toy moves 5 feet across the gound on each of your turns
         #     in a random direction. It makes noises as appropriate to the
         #     creature it represents.
-
         #     Fire Starter. The device produces a miniature flame, which you can
         #     use to light a candle, torch, or campfire. Using the device requires
         #     your action.
-
         #     Music Box. When opened, this music box plays a single song at a
         #     moderate volume. The box stops playing when it reaces the song's end
         #     or when it's closed.

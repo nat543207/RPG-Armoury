@@ -4,9 +4,9 @@ import plugins.dnd5 as system
 import yaml
 # gui.launch()
 
-print(core.datastore.GameDataMeta.dataclasses)
+# print(core.datastore.GameDataMeta.dataclasses)
 doc = yaml.load(open('plugins/dnd5/dnd5.yml'))
-# print(doc)
+print(doc)
 
 # elf = core.datastore.GameDataMeta.dataclasses['Elf']
 # ranger = core.datastore.GameDataMeta.dataclasses['Ranger']
