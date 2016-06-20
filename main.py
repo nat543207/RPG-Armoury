@@ -4,9 +4,18 @@ import plugins.dnd5 as system
 import yaml
 # gui.launch()
 
-# print(core.datastore.GameDataMeta.dataclasses)
-doc = yaml.load(open('plugins/dnd5/dnd5.yml'))
+# f = open('plugins/dnd5/dnd5.yml')
+# doc = core.datastore.load(f)
+# print(doc)
+f = open('plugins/dnd5/dnd5.yml')
+# doc = core.datastore.RPGLoader(f).get_single_node()
+# doc = yaml.load(f, core.datastore.RPGLoader)
+doc = core.datastore.load(f)
 print(doc)
+print(core.datastore.GameDataMeta.dataclasses)
+# print(doc['Item']['Armor']['LightArmor']['Padded'].__class__)
+# for cls in core.datastore.GameDataMeta.dataclasses.values():
+#     print("%s: %s" % (str(cls.__name__), str([b.__name__ for b in cls.__bases__])))
 
 # elf = core.datastore.GameDataMeta.dataclasses['Elf']
 # ranger = core.datastore.GameDataMeta.dataclasses['Ranger']

@@ -1,24 +1,24 @@
 Item:
     Armor: &AllArmor
-        Light: &LightArmor
+        LightArmor: &LightArmor
             Padded: !Data   #Name of the entry
                 cost: 5g  #Dictionary nested in the list, containing game info
                 ac: 11 + DEX #I'll find a better representation for this later
                 strength: 0 #For missing/empty requirement
                 stealth: False #Causes DISadvantage on stealth checks
                 weight: 8 #We'll assume all weights in pounds
-            # Leather:
-            #     cost: 10g #Oh, 'g' for gold, 's' for silver, 'c' for copper
-            #     ac: 11 + DEX
-            #     strength: 0
-            #     stealth: True #DOES NOT cause DISadvantage on stealth checks
-            #     weight: 10
-            # Studded Leather:
-            #     cost: 45g
-            #     ac: 12 + DEX
-            #     strength: 0
-            #     stealth: True
-            #     weight: 13
+            Leather: !Data
+                cost: 10g #Oh, 'g' for gold, 's' for silver, 'c' for copper
+                ac: 11 + DEX
+                strength: 0
+                stealth: True #DOES NOT cause DISadvantage on stealth checks
+                weight: 10
+            Studded Leather: !Data
+                cost: 45g
+                ac: 12 + DEX
+                strength: 0
+                stealth: True
+                weight: 13
         # Medium: &MediumArmor !!set
         #     ? !Item
         #         - Hide
