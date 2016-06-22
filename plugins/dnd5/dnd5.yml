@@ -19,694 +19,653 @@ Item:
                 strength: 0
                 stealth: True
                 weight: 13
-        # Medium: &MediumArmor !!set
-        #     ? !Item
-        #         - Hide
-        #         - cost: 10g
-        #           ac: 12 + min(DEX, 2)
-        #           strength: 0
-        #           stealth: True
-        #           weight: 12
-        #     ? !Item
-        #         - Chain Shirt
-        #         - cost: 50g
-        #           ac: 13 + min(DEX, 2)
-        #           strength: 0
-        #           stealth: True
-        #           weight: 20
+        Medium: &MediumArmor !!set
+            Hide: !Data
+                cost: 10g
+                ac: 12 + min(DEX, 2)
+                strength: 0
+                stealth: True
+                weight: 12
+            Chain Shirt: !Data
+                cost: 50g
+                ac: 13 + min(DEX, 2)
+                strength: 0
+                stealth: True
+                weight: 20
         # Heavy: &HeavyArmor !!set
         #     ? 
-    # Weapons: &AllWeapons
-        # Simple: &Simple
-        #     Melee: &SimpleMelee !!set
-        #         ? !Item
-        #             - Club
-        #             - cost: 1s
-        #               damage_die: 1d4
-        #               damage_type: bludgeoning
-        #               weight: 2
-        #               properties: Light
-        #     Ranged: &SimpleRanged !!set
-        #         ? 
-        # Martial: &Martial
-        #     Melee: &MartialMelee !!set
-        #         ? 
-        #     Ranged: &MartialRanged !!set
-        #         ? 
+    Weapons: &AllWeapons
+        Simple: &Simple
+            Melee: &SimpleMelee !!set
+                Club: !Data
+                    cost: 1s
+                    damage_die: 1d4
+                    damage_type: bludgeoning
+                    weight: 2
+                    properties: Light
+            Ranged: &SimpleRanged !!set
+                ? 
+        Martial: &Martial
+            Melee: &MartialMelee !!set
+                ? 
+            Ranged: &MartialRanged !!set
+                ? 
 
-# Spells: !!set
-    # ? 
+Spells: !!set
+    ? 
 
-# Feats: !!set
-    # ? 
+Feats: !!set
+    ? 
 
-# Powers: !!set
-    # ? !Power &Darkvision
-        # - Darkvision
-        # - description: >
-        #     You can see in dim light within 60 feet of you as if it were bright
-        #     light, and in darkness as if it were dim light.  You can't discern
-        #     color in darkness, only shades of grey.
-    # ? !Power &KeenSenses
-        # - Keen Senses
-        # - description: >
-        #     You have proficiency in the perception skill.
-    # ? !Power &FeyAncestry
-        # - Fey Ancestry
-        # - description: >
-        #     You have advantage on saving throws against being charmed, and magic
-        #     can't put you to sleep.
-    # ? !Power &Trance
-        # - Trance
-        # - description: >
-        #     You don't need to sleep. Instead, you meditate deeply, remaining
-        #     semiconscious, for 4 hours a day. While meditating you can dream
-        #     after a fashion; such dreams are actually mental exercises that have
-        #     become reflexive through years of practice. After resting in this
-        #     way, you gain the same benefit that another being does from 8 hours
-        #     of sleep.
-    # ? !Power &HalflingNimbleness
-        # - Halfling Nimbleness
-        # - description: >
-        #     You can move through the space of any creature that is of a size
-        #     larger than yours.
-    # ? !Power &DraconicAncestry
-        # - Draconic Ancestry
-        # - description: >
-        #     You have draconic ancestry. Choose one type of dragon from the
-        #     draconic ancestry table. Your breath weapon and damage resistance
-        #     are determined by the dragon type, as shown in the table.
-    # ? !Power &BreathWeapon
-        # - Breath Weapon
-        # - description: >
-        #     You can use your action to exhale destructive energy. Your draconic
-        #     ancestry determines the size, shape, and damage type of the
-        #     exhalation.
-        #     When you use your breath weapon, each creature in the area of the
-        #     exhalation must make a saving throw, the type of which is determined
-        #     by your draconic ancestry. The DC for the saving throw equals 8 +
-        #     your constitution modifier + your proficiency bonus. A creature
-        #     takes 2d6 damage on a failed save, and half as much damage on a
-        #     successful one. The damage increases to 3d6 at 6th level, 4d6 at
-        #     11th level, and 5d6 at 16th level.
-        #     After you use your breath weapon, you can't use it again until you
-        #     complete a short or long rest.
-    # ? !Power &DraconicDamageResistance
-        # - Damage Resistance
-        # - description: >
-        #     You have resistance to the damage type associated with your draconic
-        #     ancestry.
-    # ? !Power &DwarvenResilience
-        # - Dwarven Resilience
-        # - description: >
-        #     You have advantage on saving throws against poison, and you have
-        #     resistance against poison damage.
-    # ? !Power &DwarvenCombatTraining
-        # - Dwarven Combat Training
-        # - description: >
-        #     You have proficiency with the battleaxe, handaxe, throwing hammer,
-        #     and warhammer.
-    # ? !Power &DwarvenToughness
-        # - Dwarven Toughness
-        # - description: >
-        #     Your hit point maximum increases by 1, and it increases by 1 every
-        #     time you gain a level.
-    # ? !Power &DwarvenArmorTraining
-        # - Dwarven Armor Training
-        # - description: >
-        #     You have proficiency in light and medium armor.
-    # ? !Power &ElfWeaponTraining
-        # - Elf Weapon Training
-        # - description: >
-        #     You have proficiency with the longsword, shortsword, shortbow, and
-        #     longbow.
-    # ? !Power &ExtraCantrip
-        # - Cantrip
-        # - description: >
-        #     You know one cantrip of your choice from the wizard spellcasting
-        #     list. Intelligience is your spellcasting ability for it.
-    # ? !Power &ExtraLanguage
-        # - Extra Language
-        # - description: >
-        #     You can speak, read, and write one extra language of your choice.
-    # ? !Power &FleetOfFoot
-        # - Fleet of Foot
-        # - description: >
-        #     Your base walking speed increases to 35 feet.
-    # ? !Power &MaskOfTheWild
-        # - Mask of the Wild
-        # - description: >
-        #     You can attempt to hide even when you are only lightly obscured by
-        #     foliage, heavy rain, falling snow, mist, and other natural
-        #     phenomena.
-    # ? !Power &SuperiorDarkvision
-        # - Superior Darkvision
-        # - description: >
-        #     Your darkvision has a radius of 120 feet.
-    # ? !Power &SunlightSensitivity
-        # - Sunlight Sensitivity
-        # - description: >
-        #     You have disadvantage on attack roll and on Wisdom(Perception)
-        #     checks that rely on sight when you, the target of your attack, or
-        #     whatever you are trying to perceive is in direct sunlight.
-    # ? !Power &DrowMagic
-        # - Drow Magic
-        # - description: >
-        #     You know the dancing lights cantrip. When you reach third level, you
-        #     can cast the faerie fire spell once per day. When you reach fifth
-        #     level, you can also cast the darkness spell once per day. Charisma
-        #     is your spellcasting ability for these spells.
-    # ? !Power &DrowWeaponTraining
-        # - Drow Weapon Training
-        # - description: >
-        #     You have proficiency in with the rapier, shortsword, and hand
-        #     crossbow.
-    # ? !Power &LuckyPower
-        # - Lucky
-        # - description: >
-        #     When you roll a 1 on an attack roll, ability check, or saving throw,
-        #     you can reroll the die, and must use the new roll.
-    # ? !Power &Brave
-        # - Brave
-        # - description: >
-        #     You have advantage on saving throws agains being frightened.
-    # ? !Power &NaturallyStealthy
-        # - Naturally Stealthy
-        # - description: >
-        #     You can attempt to hide even when you are obscured only by a
-        #     creature that is at lease one size larger than you.
-    # ? !Power &StoutResilience #*DwarvenResilience
-        # - Stout Resilience
-        # - description: >
-        #     Actually the same as Dwarven Resilience
-    # ? !Power &GnomeCunning
-        # - Gnome Cunning
-        # - description: >
-        #     You have advantage on all intelligence, wisdom, and charisma saving
-        #     throws against magic.
-    # ? !Power &Menacing
-        # - Menacing
-        # - description: >
-        #     You gain proficiency in the intimidation skill.
-    # ? !Power &RelentlessEndurance
-        # - Relentless Endurance
-        # - description: >
-        #     When you are reduced to 0 hitpoints, but not killed outright, you
-        #     can drop to 1 hit point instead. You can't use this feature again
-        #     until you finish a long rest.
-    # ? !Power &SavageAttacks
-        # - Savage Attacks
-        # - description: >
-        #     When you score a critical hit with a melee weapon attack, you can
-        #     roll one of the weapon's damage dice one additional time and add it
-        #     to the extra damage of the critical hit.
-    # ? !Power &HellishResistance
-        # - Hellish Resistance
-        # - description: >
-        #     You have resistance to fire damage.
-    # ? !Power &InfernalLegacy
-        # - Infernal Legacy
-        # - description: >
-        #     You know the thaumaturgy cantrip. Once you reach 3rd level, you can
-        #     cast the hellish rebuke spell once per day as a 2nd level spell.
-        #     Once you reach 5th level, you can also cast the darkness spell once
-        #     per day. Charisma is your spellcasting ability for these spells.
-    # ? !Power &NaturalIllusionist
-        # - Natural Illusionist
-        # - description: >
-        #     You knwo the minor illusion cantrip. Intelligence is your
-        #     spellcasting ability for it.
-    # ? !Power &SpeakWithSmallBeasts
-        # - Speak with Small Beasts
-        # - description: >
-        #     Through sounds and gestures, you can communicate simple ideas with
-        #     small or smaller beasts. Forest gnomes love animals and often keep
-        #     squirrels, badgers, rabbits, moles, woodpeckers, and other creatures
-        #     as beloved pets.
-    # ? !Power &ArtificersLore
-        # - Artificer's Lore
-        # - description: >
-        #     Whenever you make an intelligence(history) check related to magic
-        #     items, alchemical objects, or technological devices, you can add
-        #     twice your proficiency bonus, instead of any proficiency bonus you
-        #     would apply.
-    # ? !Power &Tinker
-        # - Tinker
-        # - description: >
-        #     You have proficiency with artisan's tools(tinker's tools). Using
-        #     those tools, you can spend 1 hour and 10 gp worth of materials to
-        #     construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to
-        #     function after 24 hours (unless you spend 1 hour repairing it to
-        #     keep the device functioning), or when you use your action to
-        #     dismantle it; at that time, you can reclaim the materials used to
-        #     create it. You can have up to three such devices active at a time.
-        #     When you create a device, choose one of the following options
-        #     Clockwork Toy. This toy is a clockwork animal, monster, or person,
-        #     such as a frog, mouse, bird, dragon, or soldier. When placed on the
-        #     ground, the toy moves 5 feet across the gound on each of your turns
-        #     in a random direction. It makes noises as appropriate to the
-        #     creature it represents.
-        #     Fire Starter. The device produces a miniature flame, which you can
-        #     use to light a candle, torch, or campfire. Using the device requires
-        #     your action.
-        #     Music Box. When opened, this music box plays a single song at a
-        #     moderate volume. The box stops playing when it reaces the song's end
-        #     or when it's closed.
-    # ? !Power &SkillVersatility
-        # - Skill Versatility
-        # - description: >
-        #     You gain proficiency in two skills of your choice.
+Powers: !!set
+    Darkvision: !Data &Darkvision
+        description: >
+            You can see in dim light within 60 feet of you as if it were bright
+            light, and in darkness as if it were dim light.  You can't discern
+            color in darkness, only shades of grey.
+    Keen Senses: !Data &KeenSenses
+        description: >
+            You have proficiency in the perception skill.
+    Fey Ancestry: !Data &FeyAncestry
+        description: >
+            You have advantage on saving throws against being charmed, and magic
+            can't put you to sleep.
+    Trance: !Data &Trance
+        description: >
+            You don't need to sleep. Instead, you meditate deeply, remaining
+            semiconscious, for 4 hours a day. While meditating you can dream
+            after a fashion; such dreams are actually mental exercises that have
+            become reflexive through years of practice. After resting in this
+            way, you gain the same benefit that another being does from 8 hours
+            of sleep.
+    Halfling Nimbleness: !Data &HalflingNimbleness
+        description: >
+            You can move through the space of any creature that is of a size
+            larger than yours.
+    Draconic Ancestry: !Data &DraconicAncestry
+        description: >
+            You have draconic ancestry. Choose one type of dragon from the
+            draconic ancestry table. Your breath weapon and damage resistance
+            are determined by the dragon type, as shown in the table.
+    Breath Weapon: !Data &BreathWeapon
+        description: >
+            You can use your action to exhale destructive energy. Your draconic
+            ancestry determines the size, shape, and damage type of the
+            exhalation.
+            When you use your breath weapon, each creature in the area of the
+            exhalation must make a saving throw, the type of which is determined
+            by your draconic ancestry. The DC for the saving throw equals 8 +
+            your constitution modifier + your proficiency bonus. A creature
+            takes 2d6 damage on a failed save, and half as much damage on a
+            successful one. The damage increases to 3d6 at 6th level, 4d6 at
+            11th level, and 5d6 at 16th level.
+            After you use your breath weapon, you can't use it again until you
+            complete a short or long rest.
+    Damage Resistance: !Data &DraconicDamageResistance
+        description: >
+            You have resistance to the damage type associated with your draconic
+            ancestry.
+    Dwarven Resilience: !Data &DwarvenResilience
+        description: >
+            You have advantage on saving throws against poison, and you have
+            resistance against poison damage.
+    Dwarven Combat Training: !Data &DwarvenCombatTraining
+        description: >
+            You have proficiency with the battleaxe, handaxe, throwing hammer,
+            and warhammer.
+    Dwarven Toughness: !Data &DwarvenToughness
+        description: >
+            Your hit point maximum increases by 1, and it increases by 1 every
+            time you gain a level.
+    Dwarven Armor Training: !Data &DwarvenArmorTraining
+        description: >
+            You have proficiency in light and medium armor.
+    Elf Weapon Training: !Data &ElfWeaponTraining
+        description: >
+            You have proficiency with the longsword, shortsword, shortbow, and
+            longbow.
+    Cantrip: !Data &ExtraCantrip
+        description: >
+            You know one cantrip of your choice from the wizard spellcasting
+            list. Intelligience is your spellcasting ability for it.
+    Extra Language: !Data &ExtraLanguage
+        description: >
+            You can speak, read, and write one extra language of your choice.
+    Fleet of Foot: !Data &FleetOfFoot
+        description: >
+            Your base walking speed increases to 35 feet.
+    Mask of the Wild: !Data &MaskOfTheWild
+        description: >
+            You can attempt to hide even when you are only lightly obscured by
+            foliage, heavy rain, falling snow, mist, and other natural
+            phenomena.
+    Superior Darkvision: !Data &SuperiorDarkvision
+        description: >
+            Your darkvision has a radius of 120 feet.
+    Sunlight Sensitivity: !Data &SunlightSensitivity
+        description: >
+            You have disadvantage on attack roll and on Wisdom(Perception)
+            checks that rely on sight when you, the target of your attack, or
+            whatever you are trying to perceive is in direct sunlight.
+    Drow Magic: !Data &DrowMagic
+        description: >
+            You know the dancing lights cantrip. When you reach third level, you
+            can cast the faerie fire spell once per day. When you reach fifth
+            level, you can also cast the darkness spell once per day. Charisma
+            is your spellcasting ability for these spells.
+    Drow Weapon Training: !Data &DrowWeaponTraining
+        description: >
+            You have proficiency in with the rapier, shortsword, and hand
+            crossbow.
+    Lucky: !Data &LuckyPower
+        description: >
+            When you roll a 1 on an attack roll, ability check, or saving throw,
+            you can reroll the die, and must use the new roll.
+    Brave: !Data &Brave
+        description: >
+            You have advantage on saving throws agains being frightened.
+    Naturally Stealthy: !Data &NaturallyStealthy
+        description: >
+            You can attempt to hide even when you are obscured only by a
+            creature that is at lease one size larger than you.
+    Stout Resilience: !Data &StoutResilience #*DwarvenResilience
+        description: >
+            Actually the same as Dwarven Resilience
+    Gnome Cunning: !Data &GnomeCunning
+        description: >
+            You have advantage on all intelligence, wisdom, and charisma saving
+            throws against magic.
+    Menacing: !Data &Menacing
+        description: >
+            You gain proficiency in the intimidation skill.
+    Relentless Endurance: !Data &RelentlessEndurance
+        description: >
+            When you are reduced to 0 hitpoints, but not killed outright, you
+            can drop to 1 hit point instead. You can't use this feature again
+            until you finish a long rest.
+    Savage Attacks: !Data &SavageAttacks
+        description: >
+            When you score a critical hit with a melee weapon attack, you can
+            roll one of the weapon's damage dice one additional time and add it
+            to the extra damage of the critical hit.
+    Hellish Resistance: !Data &HellishResistance
+        description: >
+            You have resistance to fire damage.
+    Infernal Legacy: !Data &InfernalLegacy
+        description: >
+            You know the thaumaturgy cantrip. Once you reach 3rd level, you can
+            cast the hellish rebuke spell once per day as a 2nd level spell.
+            Once you reach 5th level, you can also cast the darkness spell once
+            per day. Charisma is your spellcasting ability for these spells.
+    Natural Illusionist: !Data &NaturalIllusionist
+        description: >
+            You knwo the minor illusion cantrip. Intelligence is your
+            spellcasting ability for it.
+    Speak with Small Beasts: !Data &SpeakWithSmallBeasts
+        description: >
+            Through sounds and gestures, you can communicate simple ideas with
+            small or smaller beasts. Forest gnomes love animals and often keep
+            squirrels, badgers, rabbits, moles, woodpeckers, and other creatures
+            as beloved pets.
+    Artificer's Lore: !Data &ArtificersLore
+        description: >
+            Whenever you make an intelligence(history) check related to magic
+            items, alchemical objects, or technological devices, you can add
+            twice your proficiency bonus, instead of any proficiency bonus you
+            would apply.
+    Tinker: !Data &Tinker
+        description: >
+            You have proficiency with artisan's tools(tinker's tools). Using
+            those tools, you can spend 1 hour and 10 gp worth of materials to
+            construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to
+            function after 24 hours (unless you spend 1 hour repairing it to
+            keep the device functioning), or when you use your action to
+            dismantle it; at that time, you can reclaim the materials used to
+            create it. You can have up to three such devices active at a time.
+            When you create a device, choose one of the following options
+            Clockwork Toy. This toy is a clockwork animal, monster, or person,
+            such as a frog, mouse, bird, dragon, or soldier. When placed on the
+            ground, the toy moves 5 feet across the gound on each of your turns
+            in a random direction. It makes noises as appropriate to the
+            creature it represents.
+            Fire Starter. The device produces a miniature flame, which you can
+            use to light a candle, torch, or campfire. Using the device requires
+            your action.
+            Music Box. When opened, this music box plays a single song at a
+            moderate volume. The box stops playing when it reaces the song's end
+            or when it's closed.
+    Skill Versatility: !Data &SkillVersatility
+        description: >
+            You gain proficiency in two skills of your choice.
 
-# Races: !!set
-    # ? !Race
-        # - Dwarf
-        # - stats:
-        #       con: 2
-        #   size: Medium
-        #   speed: 25
-        #   language:
-        #       Common: !!set
-        #           ? speak
-        #           ? read
-        #           ? write
-        #       Dwarvish: !!set
-        #           ? speak
-        #           ? read
-        #           ? write
-        #   proficiencies:
-        #       skills: !!set
-        #           ?
-        #       weapons: !!set
-        #           ? battleaxe
-        #           ? handaxe
-        #           ? throwing hammer
-        #           ? warhammer
-        #       tools: !!set
-        #           ?
-        #   powers: !!set
-        #       ? *Darkvision
-        #       ? *DwarvenResilience
-        #       ? *DwarvenCombatTraining
-    # ? !Race
-        # - Elf
-        # - stats:
-        #       dex: 2
-        #   size: Medium
-        #   speed: 30
-        #   language:
-        #       Common: !!set
-        #           ? speak
-        #           ? read
-        #           ? write
-        #       Elvish: !!set
-        #           ? speak
-        #           ? read
-        #           ? write
-        #   proficiencies:
-        #       skills: !!set
-        #           ? perception
-        #       weapons: !!set
-        #           ?
-        #       tools: !!set
-        #           ?
-        #   powers: !!set
-        #       ? *Darkvision
-        #       ? *KeenSenses
-        #       ? *FeyAncestry
-        #       ? *Trance
-    # Halfling:
-        # stats:
-        #     dex: 2
-        # size: Small
-        # speed: 25
-        # language:
-        #     Common: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        #     Halfling: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        # proficiencies:
-        #     skills: !!set
-        #         ?
-        #     weapons: !!set
-        #         ?
-        #     tools: !!set
-        #         ?
-        # powers: !!set
-        #     ? *LuckyPower
-        #     ? *Brave
-        #     ? *HalflingNimbleness
-    # Dragonborn:
-        # stats:
-        #     str: 2
-        #     cha: 1
-        # size: Medium
-        # speed: 30
-        # language:
-        #     Common: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        #     Draconic: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        # proficiencies:
-        #     skills: !!set
-        #         ?
-        #     weapons: !!set
-        #         ?
-        #     tools: !!set
-        #         ?
-        # powers: !!set
-        #     ? *DraconicAncestry
-        #     ? *BreathWeapon
-        #     ? *DraconicDamageResistance
-    # Gnome:
-        # stats:
-        #     int: 2
-        # size: Small
-        # speed: 25
-        # language:
-        #     Common: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        #     Gnomish: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        # proficiencies:
-        #     skills: !!set
-        #         ?
-        #     weapons: !!set
-        #         ?
-        #     tools: !!set
-        #         ?
-        # powers: !!set
-        #     ? *Darkvision
-        #     ? *GnomeCunning
-    # HalfOrc:
-        # stats:
-        #     str: 2
-        #     con: 1
-        # size: Medium
-        # speed: 30
-        # language:
-        #     Common: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        #     Orc: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        # proficiencies:
-        #     skills: !!set
-        #         ? intimidation
-        #     weapons: !!set
-        #         ?
-        #     tools: !!set
-        #         ?
-        # powers: !!set
-        #     ? *Darkvision
-        #     ? *Menacing
-        #     ? *RelentlessEndurance
-        #     ? *SavageAttacks
-    # Tiefling:
-        # stats:
-        #     int: 1
-        #     cha: 2
-        # size: Medium
-        # speed: 30
-        # language:
-        #     Common: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        #     Infernal: !!set
-        #         ? speak
-        #         ? read
-        #         ? write
-        # proficiencies:
-        #     skills: !!set
-        #         ?
-        #     weapons: !!set
-        #         ?
-        #     tools: !!set
-        #         ?
-        # powers: !!set
-        #     ? *Darkvision
-        #     ? *HellishResistance
-        #     ? *InfernalLegacy
+Races: !!set
+    Dwarf: !Data
+        stats:
+              con: 2
+          size: Medium
+          speed: 25
+          language:
+              Common: !!set
+                  ? speak
+                  ? read
+                  ? write
+              Dwarvish: !!set
+                  ? speak
+                  ? read
+                  ? write
+          proficiencies:
+              skills: !!set
+                  ?
+              weapons: !!set
+                  ? battleaxe
+                  ? handaxe
+                  ? throwing hammer
+                  ? warhammer
+              tools: !!set
+                  ?
+          powers: !!set
+              ? *Darkvision
+              ? *DwarvenResilience
+              ? *DwarvenCombatTraining
+    Elf: !Data
+        stats:
+              dex: 2
+          size: Medium
+          speed: 30
+          language:
+              Common: !!set
+                  ? speak
+                  ? read
+                  ? write
+              Elvish: !!set
+                  ? speak
+                  ? read
+                  ? write
+          proficiencies:
+              skills: !!set
+                  ? perception
+              weapons: !!set
+                  ?
+              tools: !!set
+                  ?
+          powers: !!set
+              ? *Darkvision
+              ? *KeenSenses
+              ? *FeyAncestry
+              ? *Trance
+    Halfling:
+        stats:
+            dex: 2
+        size: Small
+        speed: 25
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Halfling: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *LuckyPower
+            ? *Brave
+            ? *HalflingNimbleness
+    Dragonborn:
+        stats:
+            str: 2
+            cha: 1
+        size: Medium
+        speed: 30
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Draconic: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *DraconicAncestry
+            ? *BreathWeapon
+            ? *DraconicDamageResistance
+    Gnome:
+        stats:
+            int: 2
+        size: Small
+        speed: 25
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Gnomish: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *Darkvision
+            ? *GnomeCunning
+    HalfOrc:
+        stats:
+            str: 2
+            con: 1
+        size: Medium
+        speed: 30
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Orc: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ? intimidation
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *Darkvision
+            ? *Menacing
+            ? *RelentlessEndurance
+            ? *SavageAttacks
+    Tiefling:
+        stats:
+            int: 1
+            cha: 2
+        size: Medium
+        speed: 30
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Infernal: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ?
+            weapons: !!set
+                ?
+            tools: !!set
+                ?
+        powers: !!set
+            ? *Darkvision
+            ? *HellishResistance
+            ? *InfernalLegacy
 
-# Classes: !!set
-    # Barbarian:
-        # hitdice: d12
-        # proficiencies:
-        #     armor: !!set
-        #         ? light
-        #         ? medium
-        #         ? shields
-        #     weapons: !!set
-        #         ? smelee
-        #         ? mmelee
-        #         ? sranged
-        #         ? mranged
-        #     tools: !!set
-        #         ?
-        #     savingthrows: !!set
-        #         ? str
-        #         ? con
-        #     skills: !!set
-        #         ?
-        # equipment: !!set
-        #     ?
-    # Bard:
-        # hitdice: d8
-        # proficiencies:
-        #     armor: !!set
-        #         ? light
-        #     weapons: !!set
-        #         ? smelee
-        #         ? sranged
-        #         ? hand crossbow
-        #         ? longsword
-        #         ? rapier
-        #         ? shortsword
-        #     tools: !!set
-        #         ? musical instrument
-        #         ? musical instrument
-        #         ? musical instrument
-        #     savingthrows: !!set
-        #         ? dex
-        #         ? cha
-        #     skills: !!set
-        #         ?
-        # equipment: !!set
-        #     ?
-    # Cleric:
-        # hitdice: d8
-        # proficiencies:
-        #     armor: !!set
-        #         ? light
-        #         ? medium
-        #         ? shields
-        #     weapons: !!set
-        #         ? smelee
-        #         ? sranged
-        #     tools: !!set
-        #         ?
-        #     savingthrows: !!set
-        #         ? wis
-        #         ? cha
-        #     skills: !!set
-        #         ?
-        # equipment: !!set
-        #     ?
-    # Druid:
-        # hitdice: d8
-        # proficiencies:
-        #     armor: !!set
-        #         ? light
-        #         ? medium
-        #         ? shields
-        #     weapons: !!set
-        #         ? club
-        #         ? dagger
-        #         ? dart
-        #         ? javelin
-        #         ? mace
-        #         ? quarterstaff
-        #         ? scimitar
-        #         ? sickle
-        #         ? sling
-        #         ? spear
-        #     tools: !!set
-        #         ? herbalism kit
-        #     savingthrows: !!set
-        #         ? int
-        #         ? wis
-        # equipment: !!set
-        #     ?
-    # Fighter:
-        # hitdice: d10
-        # proficiencies:
-        #     armor: !!set
-        #         ? light
-        #         ? medium
-        #         ? heavy
-        #         ? shields
-        #     weapons: !!set
-        #         ? smelee
-        #         ? sranged
-        #         ? mmelee
-        #         ? mranged
-        #     tools: !!set
-        #         ?
-        #     savingthrows: !!set
-        #         ? str
-        #         ? con
-        # equipment: !!set
-        #     ?
-    # Monk:
-        # hitdice: d8
-        # proficiencies:
-        #     armor: !!set
-        #         ? smelee
-        #         ? sranged
-        #         ? shortsword
-        #     tools: !!set
-        #         ?
-        #     savingthrows: !!set
-        #         ? str
-        #         ? dex
-        #     skills: !!set
-        #         ?
-        # equipment: !!set
-        #     ?
-    # Paladin:
-        # hitdice: d10
-        # proficiencies:
-        #     armor: !!set
-        #         ? light
-        #         ? medium
-        #         ? heavy
-        #         ? shields
-        #     weapons: !!set
-        #         ? smelee
-        #         ? sranged
-        #         ? mmelee
-        #         ? mranged
-        #     tools: !!set
-        #         ?
-        #     savingthrows: !!set
-        #         ? wis
-        #         ? cha
-        #     skills: !!set
-        #         ?
-        # equipment: !!set
-        #     ?
-    # ? !Class
-        # - Ranger
-        # - hitdice: d10
-        #   proficiencies:
-        #       armor: !!set
-        #           ? light
-        #           ? medium
-        #           ? shields
-        #       weapons: !!set
-        #           ? smelee
-        #           ? sranged
-        #           ? mmelee
-        #           ? mranged
-        #       tools: !!set
-        #           ?
-        #       savingthrows: !!set
-        #           ? str
-        #           ? dex
-        #       skills: !!set
-        #           ?
-        #   equipment: !!set
-        #       ?
-    # Rogue:
-        # hitdice: d8
-        # proficiencies:
-        #     armor: !!set
-        #         ? light
-        #     weapons: !!set
-        #         ? smelee
-        #         ? sranged
-        #         ? hand crossbow
-        #         ? longsword
-        #         ? rapier
-        #         ? shortsword
-        #     tools: !!set
-        #         ? thieves tools
-        #     savingthrows: !!set
-        #         ? dex
-        #         ? int
-        #     skills: !!set
-        #         ?
-        # equipment: !!set
-        #     ?
-    # Sorceror:
-        # hitdice: d6
-        # proficiencies:
-        #     armor: !!set
-        #         ?
-        #     weapons: !!set
-        #         ? dagger
-        #         ? dart
-        #         ? sling
-        #         ? quarterstaff
-        #         ? light crossbow
-        #     tools: !!set
-        #         ?
-        #     savingthrows: !!set
-        #         ? con
-        #         ? cha
-        #     skills: !!set
-        #         ?
-        # equipment: !!set
-        #     ?
-    # Warlock:
-        # hitdice: d8
-        # proficiencies:
-        #     armor: !!set
-        #         ? light
-        #     weapons: !!set
-        #         ? smelee
-        #         ? sranged
-        #     tools: !!set
-        #         ?
-        #     savingthrows: !!set
-        #         ? wis
-        #         ? cha
-        #     skills: !!set
-        #         ?
-        # equipment: !!set
-        #     ?
-    # Wizard:
-        # hitdice: d6
-        # proficiencies:
-        #     armor: !!set
-        #         ?
-        #     weapons: !!set
-        #         ? dagger
-        #         ? dart
-        #         ? sling
-        #         ? quarterstaff
-        #         ? light crossbow
-        #     tools: !!set
-        #         ?
-        #     savingthrows: !!set
-        #         ? int
-        #         ? wis
-        #     skills: !!set
-        #         ?
-        # equipment: !!set
-        #     ?
+Classes: !!set
+    Barbarian:
+        hitdice: d12
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? mmelee
+                ? sranged
+                ? mranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? str
+                ? con
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Bard:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? hand crossbow
+                ? longsword
+                ? rapier
+                ? shortsword
+            tools: !!set
+                ? musical instrument
+                ? musical instrument
+                ? musical instrument
+            savingthrows: !!set
+                ? dex
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Cleric:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? sranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? wis
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Druid:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? shields
+            weapons: !!set
+                ? club
+                ? dagger
+                ? dart
+                ? javelin
+                ? mace
+                ? quarterstaff
+                ? scimitar
+                ? sickle
+                ? sling
+                ? spear
+            tools: !!set
+                ? herbalism kit
+            savingthrows: !!set
+                ? int
+                ? wis
+        equipment: !!set
+            ?
+    Fighter:
+        hitdice: d10
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? heavy
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? mmelee
+                ? mranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? str
+                ? con
+        equipment: !!set
+            ?
+    Monk:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? smelee
+                ? sranged
+                ? shortsword
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? str
+                ? dex
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Paladin:
+        hitdice: d10
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? heavy
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? mmelee
+                ? mranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? wis
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Ranger: !Data
+        hitdice: d10
+          proficiencies:
+              armor: !!set
+                  ? light
+                  ? medium
+                  ? shields
+              weapons: !!set
+                  ? smelee
+                  ? sranged
+                  ? mmelee
+                  ? mranged
+              tools: !!set
+                  ?
+              savingthrows: !!set
+                  ? str
+                  ? dex
+              skills: !!set
+                  ?
+          equipment: !!set
+              ?
+    Rogue:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? hand crossbow
+                ? longsword
+                ? rapier
+                ? shortsword
+            tools: !!set
+                ? thieves tools
+            savingthrows: !!set
+                ? dex
+                ? int
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Sorceror:
+        hitdice: d6
+        proficiencies:
+            armor: !!set
+                ?
+            weapons: !!set
+                ? dagger
+                ? dart
+                ? sling
+                ? quarterstaff
+                ? light crossbow
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? con
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Warlock:
+        hitdice: d8
+        proficiencies:
+            armor: !!set
+                ? light
+            weapons: !!set
+                ? smelee
+                ? sranged
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? wis
+                ? cha
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+    Wizard:
+        hitdice: d6
+        proficiencies:
+            armor: !!set
+                ?
+            weapons: !!set
+                ? dagger
+                ? dart
+                ? sling
+                ? quarterstaff
+                ? light crossbow
+            tools: !!set
+                ?
+            savingthrows: !!set
+                ? int
+                ? wis
+            skills: !!set
+                ?
+        equipment: !!set
+            ?
+
