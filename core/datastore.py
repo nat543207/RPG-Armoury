@@ -51,48 +51,24 @@ def load_node(node, loader, parent=GameDataType):
 def load_node_tuple(tpl, loader, parent):
     k, v = tpl
     # print("%s : %s" % tpl)
-    if v.tag != GameDataType.yaml_tag:
-        # print(v.tag)
-        key = load_node(k, loader)
-        if parent is not None:
-            parent = type(key, (parent,), {})
-        val = load_node(v, loader, parent)
-        return (key, val)
-    else:
-        name = load_node(k, loader, None)
-        data = load_node(v, loader, None)
-        return (name, type(name, (parent,), data))
+    try:
+        if v.tag != GameDataType.yaml_tag:
+            # print(v.tag)
+            key = load_node(k, loader)
+            if parent is not None:
+                parent = type(key, (parent,), {})
+            val = load_node(v, loader, parent)
+            return (key, val)
+        else:
+            name = load_node(k, loader, None)
+            data = load_node(v, loader, None)
+            return (name, type(name, (parent,), data))
+    except TypeError:
+        print(tpl)
+        raise
 
 
 
-#TODO Move this someplace else.  This file doesn't make sense for it.
-class DeepDataStructure():
-    """Mixin to implement 'content-aware' versions of standard container
-    classes"""
-    def __contains__(cls, val):
-        if val in cls.__dict__:
-            return True
-        for i in cls.__dict__.values():
-            try:
-                if i is None:
-                    continue
-                if val in i:
-                    return True
-            except TypeError:
-                pass
-        return False
-
-    def __getitem__(cls, key):
-        if key in cls.__dict__:
-            return cls.__dict__[key] #Return, or prepare to combine?
-        for v in cls.__dict__.values():
-            try:
-                if v is None:
-                    continue
-                if key in v:
-                    return v[key]
-            except TypeError:
-                pass
 
 
 
