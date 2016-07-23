@@ -36,7 +36,7 @@ class RPGLoader(yaml.Loader):
 # Stand-in for the funcitonaltiy I eventually hope to implement through a
 # specialization of the the standard YAML Loader class.  For now, though,
 # this group of recursive functions does what I want.
-def load(stream):
+def load_rpg(stream):
     l = yaml.Loader(stream)
     return load_node(l.get_single_node(), l)
 

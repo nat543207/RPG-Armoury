@@ -1,13 +1,12 @@
-# import core.gui as gui
+import core.gui as gui
 import core.datastore
-# import plugins.dnd5 as system
 import yaml
-# gui.launch()
 
+gui.launch()
+
+##YAML loading demo code
 # f = open('plugins/dnd5/dnd5.yml')
-# doc = core.datastore.load(f)
+# f = open('character.yml')
+# doc = core.datastore.load_rpg(f)
 # print(doc)
-f = open('plugins/dnd5/dnd5.yml')
-doc = core.datastore.load(f)
-print(doc)
-print(core.datastore.GameDataMeta.dataclasses)
+# print(core.datastore.GameDataMeta.dataclasses)
