@@ -1,7 +1,10 @@
+from plugins.dnd5 import Character
+ext_character = Character('Elf', 'Wizard', 123, str=11, int=12, cha=13, wis=14, con=15, dex=16)
+
 from kivy.app import App
-from kivy.uix.listview import ListView, ListItemButton
 from kivy.adapters.listadapter import ListAdapter
-from kivy.properties import ListProperty, ObjectProperty
+from kivy.properties import StringProperty
+from kivy.uix.button import Button
 
 # To keep the rpgarmoury.kv file pure, any functionality not strictly
 # related to UI appearance should be made here.  Most often, this will be
@@ -9,16 +12,15 @@ from kivy.properties import ListProperty, ObjectProperty
 # other widgets.
 
 
-class Table(ListView):
-    # data = ListProperty(['Test2'])
+class CoercedStringProperty(StringProperty):
+    """Coerces the passed value into a string, allowing non-string values
+       to be represented easily from within kv file.  Not for direct use;
+       rather, should only be used through the OmniDisplay class."""
+    def __set__(self, obj, val):
+        super().__set__(obj, str(val))
 
-    def __init__(self, **kwargs):
-        # print(kwargs)
-        super(Table, self).__init__(**kwargs)
-        # TODO Figure out why self.adapter refuses to populate from the
-        # values provided in rpgarmoury.kv when adapter initialized
-        # in this method, instead of kv file
-        # print(self.data)
+class Panel(Button):
+    text = CoercedStringProperty()
 
 class RPGArmoury(App):
     pass

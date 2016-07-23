@@ -1,4 +1,5 @@
 #: import SimpleTableLayout kivy.garden.simpletablelayout
+#: import player core.gui.ext_character
 GridLayout:
     width: 500
     cols: 2
@@ -21,25 +22,25 @@ GridLayout:
     GridLayout:
         id: 'StatBox'
         rows: 5
-        Button:
+        Panel:
             background_color: 1, 0, 0, 0.5
             text: 'Character Name\nLevel, Class'
-        Button:
+        Panel:
             background_color: 1, 1, 0, 0.5
-            text: 'HP'
-        Button:
+            text: player.hp
+        Panel:
             background_color: 0, 1, 0, 0.5
-            text: 'XP'
-        Button:
+            text: player.xp
+        Panel:
             background_color: 0, 0, 1, 0.5
-            text: 'Hit Dice'
+            text: player.hitdice
         GridLayout:
             cols: 3
             Label:
-            Button:
+            Panel:
                 background_color: 1, 0, 1, 0.5
-                text: 'AC'
-            Button:
+                text: player.ac
+            Panel:
                 background_color: 0, 1, 1, 0.5
                 text: 'Condition\nSymbols'
 
@@ -47,6 +48,7 @@ GridLayout:
     text: 'Skills'
     BoxLayout:
         Table:
+            data: player.skills
             adapter: ListAdapter(data=self.data, cls=ListItemButton)
         BoxLayout:
             orientation: 'vertical'
@@ -68,13 +70,13 @@ GridLayout:
     BoxLayout:
         orientation: 'vertical'
         Table:
-            data: ['Items', 'Go', 'Here']
+            data: player.inventory
             adapter: ListAdapter(data=self.data, cls=ListItemButton)
-        Button:
+        Panel:
             background_color: 0.3, 0.3, 0.3, 0.5
             text: 'Selected Item Information\n(Conditionally Visible)'
 
-<Table>:
+<Table@ListView>:
     data: ['Placeholder', 'Strings', 'For', 'Empty', 'Tables']
 
 <ListItemButton>:
