@@ -43,19 +43,19 @@ Item:
                     damage_type: bludgeoning
                     weight: 2
                     properties: Light
-            Ranged: &SimpleRanged !!set
-                ? 
-        Martial: &Martial
-            Melee: &MartialMelee !!set
-                ? 
-            Ranged: &MartialRanged !!set
-                ? 
+            # Ranged: &SimpleRanged !!set
+            #     ? 
+        # Martial: &Martial
+        #     Melee: &MartialMelee !!set
+        #         ? 
+        #     Ranged: &MartialRanged !!set
+        #         ? 
 
-Spells: !!set
-    ? 
+# Spells: !!set
+#     ? 
 
-Feats: !!set
-    ? 
+# Feats: !!set
+#     ? 
 
 Powers: !!set
     Darkvision: !Data &Darkvision
@@ -242,57 +242,57 @@ Races: !!set
     Dwarf: !Data
         stats:
               con: 2
-          size: Medium
-          speed: 25
-          language:
-              Common: !!set
-                  ? speak
-                  ? read
-                  ? write
-              Dwarvish: !!set
-                  ? speak
-                  ? read
-                  ? write
-          proficiencies:
-              skills: !!set
-                  ?
-              weapons: !!set
-                  ? battleaxe
-                  ? handaxe
-                  ? throwing hammer
-                  ? warhammer
-              tools: !!set
-                  ?
-          powers: !!set
-              ? *Darkvision
-              ? *DwarvenResilience
-              ? *DwarvenCombatTraining
+        size: Medium
+        speed: 25
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Dwarvish: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                # ?
+            weapons: !!set
+                ? battleaxe
+                ? handaxe
+                ? throwing hammer
+                ? warhammer
+            tools: !!set
+                # ?
+        # powers: !!set
+        #     ? *Darkvision
+        #     ? *DwarvenResilience
+        #     ? *DwarvenCombatTraining
     Elf: !Data
         stats:
               dex: 2
-          size: Medium
-          speed: 30
-          language:
-              Common: !!set
-                  ? speak
-                  ? read
-                  ? write
-              Elvish: !!set
-                  ? speak
-                  ? read
-                  ? write
-          proficiencies:
-              skills: !!set
-                  ? perception
-              weapons: !!set
-                  ?
-              tools: !!set
-                  ?
-          powers: !!set
-              ? *Darkvision
-              ? *KeenSenses
-              ? *FeyAncestry
-              ? *Trance
+        size: Medium
+        speed: 30
+        language:
+            Common: !!set
+                ? speak
+                ? read
+                ? write
+            Elvish: !!set
+                ? speak
+                ? read
+                ? write
+        proficiencies:
+            skills: !!set
+                ? perception
+            weapons: !!set
+                # ?
+            tools: !!set
+                # ?
+        # powers: !!set
+        #     ? *Darkvision
+        #     ? *KeenSenses
+        #     ? *FeyAncestry
+        #     ? *Trance
     Halfling:
         stats:
             dex: 2
@@ -309,15 +309,15 @@ Races: !!set
                 ? write
         proficiencies:
             skills: !!set
-                ?
+                # ?
             weapons: !!set
-                ?
+                # ?
             tools: !!set
-                ?
-        powers: !!set
-            ? *LuckyPower
-            ? *Brave
-            ? *HalflingNimbleness
+                # ?
+        # powers: !!set
+        #     ? *LuckyPower
+        #     ? *Brave
+        #     ? *HalflingNimbleness
     Dragonborn:
         stats:
             str: 2
@@ -335,15 +335,15 @@ Races: !!set
                 ? write
         proficiencies:
             skills: !!set
-                ?
+                # ?
             weapons: !!set
-                ?
+                # ?
             tools: !!set
-                ?
-        powers: !!set
-            ? *DraconicAncestry
-            ? *BreathWeapon
-            ? *DraconicDamageResistance
+                # ?
+        # powers: !!set
+        #     ? *DraconicAncestry
+        #     ? *BreathWeapon
+        #     ? *DraconicDamageResistance
     Gnome:
         stats:
             int: 2
@@ -360,14 +360,14 @@ Races: !!set
                 ? write
         proficiencies:
             skills: !!set
-                ?
+                # ?
             weapons: !!set
-                ?
+                # ?
             tools: !!set
-                ?
-        powers: !!set
-            ? *Darkvision
-            ? *GnomeCunning
+                # ?
+        # powers: !!set
+        #     ? *Darkvision
+        #     ? *GnomeCunning
     HalfOrc:
         stats:
             str: 2
@@ -387,14 +387,14 @@ Races: !!set
             skills: !!set
                 ? intimidation
             weapons: !!set
-                ?
+                # ?
             tools: !!set
-                ?
-        powers: !!set
-            ? *Darkvision
-            ? *Menacing
-            ? *RelentlessEndurance
-            ? *SavageAttacks
+                # ?
+        # powers: !!set
+        #     ? *Darkvision
+        #     ? *Menacing
+        #     ? *RelentlessEndurance
+        #     ? *SavageAttacks
     Tiefling:
         stats:
             int: 1
@@ -412,15 +412,15 @@ Races: !!set
                 ? write
         proficiencies:
             skills: !!set
-                ?
+                # ?
             weapons: !!set
-                ?
+                # ?
             tools: !!set
-                ?
-        powers: !!set
-            ? *Darkvision
-            ? *HellishResistance
-            ? *InfernalLegacy
+                # ?
+        # powers: !!set
+        #     ? *Darkvision
+        #     ? *HellishResistance
+        #     ? *InfernalLegacy
 
 Classes: !!set
     Barbarian:
@@ -436,14 +436,14 @@ Classes: !!set
                 ? sranged
                 ? mranged
             tools: !!set
-                ?
+                # ?
             savingthrows: !!set
                 ? str
                 ? con
             skills: !!set
-                ?
+                # ?
         equipment: !!set
-            ?
+            # ?
     Bard:
         hitdice: d8
         proficiencies:
@@ -464,9 +464,9 @@ Classes: !!set
                 ? dex
                 ? cha
             skills: !!set
-                ?
+                # ?
         equipment: !!set
-            ?
+            # ?
     Cleric:
         hitdice: d8
         proficiencies:
@@ -478,14 +478,14 @@ Classes: !!set
                 ? smelee
                 ? sranged
             tools: !!set
-                ?
+                # ?
             savingthrows: !!set
                 ? wis
                 ? cha
             skills: !!set
-                ?
+                # ?
         equipment: !!set
-            ?
+            # ?
     Druid:
         hitdice: d8
         proficiencies:
@@ -510,7 +510,7 @@ Classes: !!set
                 ? int
                 ? wis
         equipment: !!set
-            ?
+            # ?
     Fighter:
         hitdice: d10
         proficiencies:
@@ -525,12 +525,12 @@ Classes: !!set
                 ? mmelee
                 ? mranged
             tools: !!set
-                ?
+                # ?
             savingthrows: !!set
                 ? str
                 ? con
         equipment: !!set
-            ?
+            # ?
     Monk:
         hitdice: d8
         proficiencies:
@@ -539,14 +539,14 @@ Classes: !!set
                 ? sranged
                 ? shortsword
             tools: !!set
-                ?
+                # ?
             savingthrows: !!set
                 ? str
                 ? dex
             skills: !!set
-                ?
+                # ?
         equipment: !!set
-            ?
+            # ?
     Paladin:
         hitdice: d10
         proficiencies:
@@ -561,35 +561,35 @@ Classes: !!set
                 ? mmelee
                 ? mranged
             tools: !!set
-                ?
+                # ?
             savingthrows: !!set
                 ? wis
                 ? cha
             skills: !!set
-                ?
+                # ?
         equipment: !!set
-            ?
+            # ?
     Ranger: !Data
         hitdice: d10
-          proficiencies:
-              armor: !!set
-                  ? light
-                  ? medium
-                  ? shields
-              weapons: !!set
-                  ? smelee
-                  ? sranged
-                  ? mmelee
-                  ? mranged
-              tools: !!set
-                  ?
-              savingthrows: !!set
-                  ? str
-                  ? dex
-              skills: !!set
-                  ?
-          equipment: !!set
-              ?
+        proficiencies:
+            armor: !!set
+                ? light
+                ? medium
+                ? shields
+            weapons: !!set
+                ? smelee
+                ? sranged
+                ? mmelee
+                ? mranged
+            tools: !!set
+                # ?
+            savingthrows: !!set
+                ? str
+                ? dex
+            skills: !!set
+                # ?
+        equipment: !!set
+            # ?
     Rogue:
         hitdice: d8
         proficiencies:
@@ -608,14 +608,14 @@ Classes: !!set
                 ? dex
                 ? int
             skills: !!set
-                ?
+                # ?
         equipment: !!set
-            ?
+            # ?
     Sorceror:
         hitdice: d6
         proficiencies:
             armor: !!set
-                ?
+                # ?
             weapons: !!set
                 ? dagger
                 ? dart
@@ -623,14 +623,14 @@ Classes: !!set
                 ? quarterstaff
                 ? light crossbow
             tools: !!set
-                ?
+                # ?
             savingthrows: !!set
                 ? con
                 ? cha
             skills: !!set
-                ?
+                # ?
         equipment: !!set
-            ?
+            # ?
     Warlock:
         hitdice: d8
         proficiencies:
@@ -640,19 +640,19 @@ Classes: !!set
                 ? smelee
                 ? sranged
             tools: !!set
-                ?
+                # ?
             savingthrows: !!set
                 ? wis
                 ? cha
             skills: !!set
-                ?
+                # ?
         equipment: !!set
-            ?
+            # ?
     Wizard:
         hitdice: d6
         proficiencies:
             armor: !!set
-                ?
+                # ?
             weapons: !!set
                 ? dagger
                 ? dart
@@ -660,12 +660,12 @@ Classes: !!set
                 ? quarterstaff
                 ? light crossbow
             tools: !!set
-                ?
+                # ?
             savingthrows: !!set
                 ? int
                 ? wis
             skills: !!set
-                ?
+                # ?
         equipment: !!set
-            ?
+            # ?
 
