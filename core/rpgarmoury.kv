@@ -1,5 +1,3 @@
-#: import SimpleTableLayout kivy.garden.simpletablelayout
-#: import player core.gui.ext_character
 GridLayout:
     width: 500
     cols: 2
@@ -11,35 +9,33 @@ GridLayout:
         InventoryTab:
         PowersTab:
 
-#: import App kivy.app
-<RPGArmoury@App>:
 
 <CharacterInfoPane@GridLayout>:
     rows: 2
     orientation: 'vertical'
-    Label:
+    Panel:
         text: 'Character Image\nor\nAbility Scores'
     GridLayout:
         id: 'StatBox'
         rows: 5
         Panel:
             background_color: 1, 0, 0, 0.5
-            text: 'Character Name\nLevel, Class'
-        Panel:
-            background_color: 1, 1, 0, 0.5
-            text: player.hp
+            text: '%s\n%s %s' % (app.player.name, app.player.race, app.player.classes)
+        RectangularGuage:
+            value: app.player.hp
+            max: app.player.hpmax
         Panel:
             background_color: 0, 1, 0, 0.5
-            text: player.xp
+            text: app.player.xp
         Panel:
             background_color: 0, 0, 1, 0.5
-            text: player.hitdice
+            text: app.player.hitdice
         GridLayout:
             cols: 3
-            Label:
+            Panel:
             Panel:
                 background_color: 1, 0, 1, 0.5
-                text: player.ac
+                text: app.player.ac
             Panel:
                 background_color: 0, 1, 1, 0.5
                 text: 'Condition\nSymbols'
@@ -47,55 +43,73 @@ GridLayout:
 <SkillsTab@TabbedPanelItem>:
     text: 'Skills'
     BoxLayout:
-        Table:
-            data: player.skills
-            adapter: ListAdapter(data=self.data, cls=ListItemButton)
+        ScrollView:
+            TreeTableView:
+                data: app.player.skills
         BoxLayout:
             orientation: 'vertical'
-            Label:
+            Panel:
                 text: 'Miscelaneous Trackers'
-            Label:
+            Panel:
                 text: 'Proficiencies'
-            Label:
+            Panel:
                 text: 'Languages'
-            Label:
+            Panel:
                 text: 'Background'
-            Label:
+            Panel:
                 text: 'Conditions'
 
-#:import ListItemButton kivy.uix.listview.ListItemButton
-#:import ListAdapter kivy.adapters.listadapter.ListAdapter
 <InventoryTab@TabbedPanelItem>:
     text: 'Inventory'
     BoxLayout:
         orientation: 'vertical'
-        Table:
-            data: player.inventory
-            adapter: ListAdapter(data=self.data, cls=ListItemButton)
+        ScrollView:
+            TreeTableView:
+                id: inventory
+                data: app.player.inventory
         Panel:
-            background_color: 0.3, 0.3, 0.3, 0.5
-            text: 'Selected Item Information\n(Conditionally Visible)'
-
-<Table@ListView>:
-    data: ['Placeholder', 'Strings', 'For', 'Empty', 'Tables']
-
-<ListItemButton>:
-    deselected_color: 0.4, 0.4, 0,4, 1
-    selected_color: 0.7, 0.7, 0.7, 1
+            background_color: 0.3, 0.3, 0.3, 1
+            text: 'Whelp.'
 
 <PowersTab@TabbedPanelItem>:
     text: 'Powers'
     BoxLayout:
         orientation: 'vertical'
-        Label:
+        Panel:
             text: 'Spell Slots'
-        Label:
+        Panel:
             text: 'Trackers (Powers Only)'
-        Label:
-            text: 'Racial Abilities'
-        Label:
+        Panel:
+            text: app.player.race.powers
+        Panel:
             text: 'Class Abilities'
-        Label:
+        Panel:
             text: 'Prepared Spells'
-        Label:
+        Panel:
             text: 'Weapon Attacks'
+
+
+<TreeTableView>:
+    hide_root: True
+    orientation: 'vertical'
+    ScrollView:
+        TreeView:
+            size_hint_y: None
+
+<RectangularGuage@Guage>:
+    text: '%d / %d' % (root.value, root.max)
+    left_color: 0, 1, 0, 0.5
+    right_color: 0, 0, 0, 0.5
+    background_color: 0, 0, 0, 0
+    on_press: root.decr()
+    canvas.before:
+        Color:
+            rgba: root.right_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Color:
+            rgba: root.left_color
+        Rectangle:
+            pos: self.pos
+            size: (root.value / root.max * self.size[0], self.size[1])

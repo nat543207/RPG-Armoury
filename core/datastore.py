@@ -1,68 +1,122 @@
 import yaml
+import core.rpg
 
-class GameDataMeta(yaml.YAMLObjectMetaclass):
-    dataclasses = {}
-    reserved_tags = set()
-    def __init__(cls, name, bases, kwds):
-        super().__init__(name, bases, kwds)
-        GameDataMeta.dataclasses[name] = cls
-        GameDataMeta.reserved_tags |= {cls.yaml_tag}
+# class GameDataMeta(yaml.YAMLObjectMetaclass):
+#     dataclasses = {}
+#     reserved_tags = set()
+#     def __init__(cls, name, bases, kwds):
+#         super().__init__(name, bases, kwds)
+#         GameDataMeta.dataclasses[name] = cls
+#         GameDataMeta.reserved_tags |= {cls.yaml_tag}
 
-    def __repr__(cls):
-        """Print format:  ClassName(arg1=val1, arg2=val2, ... argn=valn)"""
-        return "%s(%s)" % (cls.__name__ , ', '.join("%s=%s" % (k,v)
-                for k,v in cls.__dict__.items() if k[:1] != '_'))
+#     def __repr__(cls):
+#         """Print format:  ClassName(arg1=val1, arg2=val2, ... argn=valn)"""
+#         return "%s(%s)" % (cls.__name__ , ', '.join("%s=%s" % (k,v)
+#                 for k,v in cls.__dict__.items() if k[:1] != '_'))
 
 
 
-class GameDataType(yaml.YAMLObject, metaclass=GameDataMeta):
-    yaml_tag = '!Data'
+# class GameDataType(yaml.YAMLObject, metaclass=GameDataMeta):
+#     yaml_tag = '!Data'
 
-    @classmethod
-    def from_yaml(cls, loader, node):
-        data = loader.construct_mapping(node, deep=True, add_type=False)
-        # print(node)
-        return node
+#     @classmethod
+#     def from_yaml(cls, loader, node):
+#         parent = loader.inheritance_helper.top
+#         types = {}
+#         for name, data in node.value:
+#             name = loader.construct_object(name)
+#             data = loader.construct_object(data, deep=True)
+#             types[name] = type(name, (parent,), data)
+#         return types
+
+
+# class CharacterData(yaml.YAMLObject):
+#     yaml_tag = '!CharacterList'
+
+#     @classmethod
+#     def from_yaml(cls, loader, node):
+#         if not isinstance(node, yaml.MappingNode):
+#             raise TypeError("Can only construct characters from mappings, not scalars or sequences")
+#         characters = {}
+#         for n, d in node.value:
+#             name = loader.construct_object(n)
+#             data = loader.construct_object(d, deep=True)
+#             data.update({'name':name})
+#             characters[name] = core.rpg.Character(**data)
+#         return characters
+
+# class ItemList(yaml.YAMLObject):
+#     yaml_tag = '!ItemList'
+
+#     @classmethod
+#     def from_yaml(cls, loader, node):
+#         pass
+
+# class AggregateProperty(yaml.YAMLObject):
+#     yaml_tag = '!Aggregate'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class YAMLType(yaml.YAMLObject):
+#     yaml_tag = '!Type'
+#     @classmethod
+#     def from_yaml(cls, loader, node):
+#         pass
+
+
+
+
+
 
 class RPGLoader(yaml.Loader):
-    def construct_object(self, node, deep=False, add_type=True, parent=object):
-        if node.tag == GameDataType.yaml_tag:
-            #TODO necessarily construct_mapping?
-            return self.construct_mapping(node, deep, add_type, parent)
-        return super().construct_object(node, deep)
+    typelist = []
+    def __init__(self, stream):
+        super().__init__(stream)
+        self.inheritance_helper = RPGLoader.Stack([object])
 
+    class Stack(list):
+        def push(self, obj):
+            self.append(obj)
+        @property
+        def top(self):
+            return self[-1]
 
+    def construct_mapping(self, node):
+        parents = self.inheritance_helper
+        dct = {}
+        for k, v in node.value:
+            try:
+                k = self.construct_object(k)
+                t = type(k, (parents.top,), {})
+                self.typelist.append(t)
+                parents.push(t)
+                v = self.construct_object(v)
+                dct[k] = v
+            except TypeError:
+                print(k)
+                raise
+        return dct
 
-# Stand-in for the funcitonaltiy I eventually hope to implement through a
-# specialization of the the standard YAML Loader class.  For now, though,
-# this group of recursive functions does what I want.
-def load_rpg(stream):
-    l = yaml.Loader(stream)
-    return load_node(l.get_single_node(), l)
-
-def load_node(node, loader, parent=GameDataType):
-    if isinstance(node, yaml.SequenceNode):
-        return [load_node(v, loader) for v in node.value]
-    elif isinstance(node, yaml.MappingNode):
-        return dict([load_node_tuple(t, loader, parent) for t in node.value])
-    else:
-        return loader.construct_object(node)
-
-def load_node_tuple(tpl, loader, parent):
-    k, v = tpl
-    # print("%s : %s" % tpl)
-    try:
-        if v.tag != GameDataType.yaml_tag:
-            # print(v.tag)
-            key = load_node(k, loader)
-            if parent is not None:
-                parent = type(key, (parent,), {})
-            val = load_node(v, loader, parent)
-            return (key, val)
-        else:
-            name = load_node(k, loader, None)
-            data = load_node(v, loader, None)
-            return (name, type(name, (parent,), data))
-    except TypeError:
-        print(tpl)
-        raise
+class CharacterLoader(yaml.Loader):
+    class CharacterList(yaml.YAMLObject):
+        yaml_tag = '!CharacterList'
+        @classmethod
+        def from_yaml(cls, loader, node):
+            characters = []
+            for char in node.value:
+                # characters.append()
+                pass
