@@ -1,23 +1,67 @@
 from kivy.app import App
+from kivy.lang import Builder
 import kivy.properties as kvprop
 from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.treeview import TreeView, TreeViewNode, TreeViewLabel
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.treeview import TreeView, TreeViewLabel
 from kivy.uix.label import Label
+import yaml
+import importlib
+
 # To keep the rpgarmoury.kv file pure, any functionality not strictly
 # related to UI appearance should be made here.  Most often, this will be
 # implementation of custom Widgets that are not simply composite layouts of
 # other widgets.
 
 class RPGArmoury(App):
-    player = kvprop.ObjectProperty()
-    def __init__(self, player, **kwargs):
+    character = kvprop.ObjectProperty()
+    char_dict = kvprop.ObjectProperty()
+    current_plugin = kvprop.ObjectProperty()
+    plugins = kvprop.DictProperty()
+
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.player = player
-class GUI_Elements(App):
-    player = kvprop.ObjectProperty()
-def launch(character):
-    RPGArmoury(character).run()
+        self.char_dict = yaml.load(open('characters.yml'))
+
+    def load_plugin(self, name):
+        try:
+            self.current_plugin = self.plugins[name]
+        except KeyError:
+            plugin = importlib.import_module('plugins.%s' % name)
+            plugin.__name__ = name
+            self.plugins[name] = plugin
+            self.load_plugin(name)
+
+    def construct_character(self, data):
+        plugin_name = data['plugin']
+        self.load_plugin(plugin_name)
+        data['plugin'] = self.current_plugin
+        character = self.current_plugin.construct_character(data)
+        return character
+
+    def on_character(self, *args):
+        plugin_ui = Builder.load_file('plugins/{0}/{0}.kv'.format(self.current_plugin.__name__))
+        self.root.add_widget(plugin_ui)
+        self.root.current = plugin_ui.name
+
+
+
+
+
+
+## Custom Widgets
+class CharacterSelectionPanel(GridLayout):
+    lst = kvprop.ObjectProperty()
+    def on_lst(self, obj, lst):
+        for l in lst:
+            self.add_widget(CharacterButton(name=l, data=lst[l]))
+
+
+class CharacterButton(Button):
+    text = kvprop.StringProperty()
+    name = kvprop.AliasProperty(text.get, text.set, bind=['text'])
+    data = kvprop.DictProperty()
+
 
 
 
@@ -30,89 +74,67 @@ class CoercedStringProperty(kvprop.StringProperty):
     def __set__(self, obj, val):
         super().__set__(obj, str(val))
 
-class Panel(Button):
+
+class Panel(Label):
     text = CoercedStringProperty()
-    background_color = kvprop.ListProperty([0, 0, 0, 0])
 
 
-
-class Tracker(Panel):
+class Counter(Panel):
     value = kvprop.NumericProperty()
 
-class Guage(Tracker):
-    max = kvprop.NumericProperty(1)
+
+class CappedCounter(Counter):
+    value = kvprop.BoundedNumericProperty(0, min=-1, max=1)
+    min = kvprop.AliasProperty(value.get_min, value.set_min, bind=['value'])
+    max = kvprop.AliasProperty(value.get_max, value.set_max, bind=['value'])
+
+
+class Guage(CappedCounter):
     def decr(self, *args):
-        self.value -= 1
+        try:
+            self.value -= 1
+        except ValueError:
+            pass
+    def incr(self, *args):
+        try:
+            self.value += 1
+        except ValueError:
+            pass
 
-class TreeTableView(TreeView):
-    columns = kvprop.ListProperty()
-    data = kvprop.ListProperty()
-    hide_root = kvprop.BooleanProperty(True)
-    current_item = kvprop.ObjectProperty()
 
-    class Row(TreeViewLabel):
-        text = CoercedStringProperty()
-        def on_is_selected(self, node, selected):
-            if(selected):
-                pass
+class TreeTable(TreeView):
+    nest_attr = kvprop.StringProperty()
+    # node_cls = kvprop.ObjectProperty(TreeViewLabel)
 
     def clear_nodes(self):
         for node in self.root.nodes:
             self.remove_node(node)
 
+
     def populate(self):
         self.clear_nodes()
-        for item in self.data:
-            self.add_node(self.construct_node(item))
+        self.construct_tree(self.data, self.root)
 
-    def construct_node(self, data, deep=True):
-        node = TreeTableView.Row(text=data)
-        if deep:
+
+    def construct_tree(self, data, root_node):
+        for d in data:
+            new_node = self.construct_node(d, data)
             try:
-                for subdata in data:
-                    self.add_node(self.construct_node(subdata), node)
-            except TypeError:
+                self.construct_tree(d.contents, new_node)
+            except AttributeError:
                 pass
-        return node
-
-    def on_data(self, *args):
-        self.populate()
+            self.add_node(new_node, root_node)
 
 
+    def construct_node(self, item, data):
+        # return self.node_cls(text=str(data))
+        return self.Node(text=str(item))
 
 
-
-
-
-
+    class Node(TreeViewLabel):
+        pass
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class TreeLayout(TreeView):
-    class Node(BoxLayout, TreeViewNode):
-        def __init__(self, **kwargs):
-            BoxLayout.__init__(self, **kwargs)
-            TreeViewNode.__init__(self, **kwargs)
-            self.add_widget(Panel(text='Hi'))
-            self.add_widget(Panel(text='Bye'))
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.add_node(TreeLayout.Node())
-        self.add_node(TreeLayout.Node())
-
+Builder.load_file('core/gui_elements.kv', rulesonly=True)
