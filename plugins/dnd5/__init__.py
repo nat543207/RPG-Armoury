@@ -20,8 +20,9 @@ class dnd5(PluginBase):
         for k in dct:
             cls = self.search(k)
             if '__class' in dct[k]:
+                # print(dct[k])
                 if cls is None:
-                    cls = type(k, parents, dct)
+                    cls = type(k, parents, dct[k])
                 self.data[k] = cls
             else:
                 if cls is None:
