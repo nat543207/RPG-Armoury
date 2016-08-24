@@ -1,0 +1,47 @@
+Fingon Anwamane:
+    plugin: dnd5
+    race: Elf
+    classes:
+        - Random-Caster
+        - Wizard
+    hp: 22
+    hpmax: 22
+    scores:
+        str: 8
+        dex: 7
+        con: 10
+        int: 18
+        wis: 14
+        cha: 16
+    xp: 11614
+    ac: 12
+    hitdice: {'d6':5}
+    skills:
+        Running:
+            score: con
+        Jumping:
+            score: str
+        Talking:
+            score: cha
+    inventory:
+        A pretzle with a snake in it:
+          att1: 5
+        Bastard Sword:
+          att2: 6
+        Legitimate Sword:
+          att1: -12
+        Sock, worn:
+          smell: funky
+        Sack of Sacking:
+          contents:
+              Sack:
+                someattr: my moose
+              Firing gloves:
+                resistance: fire
+              My head:
+                race: elf
+
+Wendelar Vorgental:
+    plugin: dnd5
+    race: Wilden
+    class: Ranger

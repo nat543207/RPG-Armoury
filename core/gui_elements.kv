@@ -1,0 +1,95 @@
+<TreeTable>:
+    hide_root: True
+    data: []
+    columns: []
+    orientation: 'vertical'
+    on_data: self.populate()
+    ScrollView:
+        TreeView:
+            size_hint_y: None
+
+<InfoTable@BoxLayout>:
+    orientation: 'vertical'
+    data: []
+    nest_attr: ''
+    ScrollingTable:
+        id: table
+        data: root.data
+        nest_attr: root.nest_attr
+    Panel:
+        text: table.selected_node
+        background_color: .2, .2, .2, 1
+
+<RectangularGuage@Guage>:
+    text: '%d / %d' % (root.value, root.max)
+    left_color: 0, 0.5, 0, 1
+    right_color: 0, 0, 0, 1
+    background_color: 0, 0, 0, 0
+    canvas.before:
+        Color:
+            rgba: root.right_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Color:
+            rgba: root.left_color
+        Rectangle:
+            pos: self.pos
+            size: (root.value / root.max * self.size[0], self.size[1]) if 0 < root.value else (0, 0)
+
+<PosNegGuage@RectangularGuage>:
+    empty_color: 0, 0, 0, 1
+    pos_color: 0, 0,5, 0, 1
+    neg_color: 0.5, 0, 0, 1
+    background_color: self.empty_color
+    canvas.before:
+        Color:
+            rgba: self.pos_color if 0 < self.value else self.neg_color
+        Rectangle:
+            pos: self.pos if 0 < self.value else (self.pos[0] + self.size[0], self.pos[1])
+            size: (root.value / root.max * self.size[0], self.size[1])
+
+<ButtonedGuage@BoxLayout>:
+    max: 5
+    value: 3
+    min: -3
+    Button:
+        size_hint_x: None
+        width: root.size[1]
+        on_press: guage.decr()
+        text: '-'
+    PosNegGuage:
+        id: guage
+        max: root.max
+        min: root.min
+        value: root.value
+    Button:
+        size_hint_x: None
+        width: root.size[1]
+        on_press: guage.incr()
+        text: '+'
+
+
+<ScrollingTable@ScrollView>:
+    selected_node: table.selected_node
+    data: []
+    nest_attr: ''
+    TreeTable:
+        id: table
+        size_hint_y: None
+        height: self.minimum_height
+        data: root.data
+        nest_attr: root.nest_attr
+
+<Panel>:
+    background_color: 0, 0, 0, 0
+    text_size: self.size
+    halign: 'center'
+    valign: 'middle'
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
