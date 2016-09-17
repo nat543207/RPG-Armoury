@@ -16,13 +16,6 @@ Fingon Anwamane:
     xp: 11614
     ac: 12
     hitdice: {'d6':5}
-    skills:
-        Running:
-            score: con
-        Jumping:
-            score: str
-        Talking:
-            score: cha
     inventory:
         A pretzle with a snake in it:
           att1: 5
@@ -36,6 +29,9 @@ Fingon Anwamane:
           contents:
               Sack:
                 someattr: my moose
+                contents:
+                    Biscuit:
+                        flavor: butter
               Firing gloves:
                 resistance: fire
               My head:

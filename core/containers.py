@@ -39,3 +39,15 @@ class AggregateValue():
 
     def __str__(self):
         return str(self.__get__())
+
+
+class AutoAggregator:
+    def __init__(self, *srcs):
+        self.sources = srcs
+
+    def __getattribute__(self, attr):
+        try:
+            val = AggregateValue(attr, *super().__getattribute__('sources')).__get__()
+        except AttributeError:
+            val = super().__getattribute__(attr)
+        return val

@@ -103,7 +103,6 @@ class Guage(CappedCounter):
 
 
 class TreeTable(TreeView):
-    nest_attr = kvprop.StringProperty()
     # node_cls = kvprop.ObjectProperty(TreeViewLabel)
 
     def clear_nodes(self):
@@ -117,13 +116,13 @@ class TreeTable(TreeView):
 
 
     def construct_tree(self, data, root_node):
-        for d in data:
-            new_node = self.construct_node(d, data)
-            try:
-                self.construct_tree(d.contents, new_node)
-            except AttributeError:
-                pass
-            self.add_node(new_node, root_node)
+        try:
+            for node in data:
+                new_node = self.construct_node(node, data)
+                self.construct_tree(node, new_node)
+                self.add_node(new_node, root_node)
+        except TypeError:
+            pass
 
 
     def construct_node(self, item, data):

@@ -1,26 +1,18 @@
 import collections
 import core.rpg as rpg
+import core.containers as cnt
 import sys
 
 class Inventory(collections.OrderedDict):
     def __init__(self, data_dct):
-        self.contents = []
+        super().__init__(self)
         for iname in data_dct:
             item = data_dct[iname]
             item['name'] = iname
-            self.contents.append(Item(**item))
-    def __contains__(self, obj):
-        return obj in self.contents
+            self[iname] = Item(**item)
+        # cnt.AutoAggregator.__init__(self, *self.contents)
     def __iter__(self):
-        return (item for item in self.contents)
-    def store(self, item, quantity=1):
-        self.contents.append(item)
-    def remove(self, item):
-        self.pop(item, None)
-    # def __str__(self):
-    #     return '\n'.join([str(i) for i in self.contents])
-    # def __repr__(self):
-    #     return str(self)
+        return iter(self.values())
 
 
 class Item(rpg.Object):
@@ -30,6 +22,12 @@ class Item(rpg.Object):
             self.contents = Inventory(self.contents)
         except AttributeError:
             pass
+
+    def __iter__(self):
+        try:
+            return iter(self.contents)
+        except AttributeError:
+            return (i for i in [])
 
 
 
@@ -47,7 +45,26 @@ class DND5_Character(rpg.Character):
     hp = 0
     hpmax = 1
     spellslots = (0, 0, 0, 0, 0, 0, 0, 0, 0)
-    skills = {}
+    skills = {
+        'Acrobatics' : 'dex',
+        'Animal Handling' : 'wis',
+        'Arcana' : 'int',
+        'Athletics' : 'str',
+        'Deception' : 'cha',
+        'History' : 'int',
+        'Insight' : 'wis',
+        'Intimidation' : 'cha',
+        'Investigation' : 'int',
+        'Medicine' : 'wis',
+        'Nature' : 'int',
+        'Perception' : 'wis',
+        'Performance' : 'cha',
+        'Persuasion' : 'cha',
+        'Religion' : 'int',
+        'Sleight of Hand' : 'dex',
+        'Stealth' : 'dex',
+        'Survival' : 'wis'
+            }
     spells_prepared = {}
     spellbook = {}
     speed = 0
@@ -60,62 +77,41 @@ class DND5_Character(rpg.Character):
     description = ''
     item_slots = {}
 
-    def make_inventory(self, inv):
-        constructed = []
-        for item in inv:
-            try:
-                data = inv[item]
-                data['name'] = item
-                constructed.append(rpg.Object(**data))
-            except KeyError:
-                raise
-        return Inventory(*constructed)
-
 
     def __init__(self, **kwargs):
         # Make ability scores into top-level attributes
-        scores = kwargs.pop('scores', {})
-        super().__init__(**scores, **kwargs)
-
+        scores = {i : AbilityScore(j) for i,j in kwargs.pop('scores', {}).items()}
+        rpg.Character.__init__(self, **scores, **kwargs)
         # self.plugin = sys.modules['plugins.%s' % self.plugin]
+        self.skills = {i : Skill(getattr(self, j)) for i,j in self.skills.items()}
         self.inventory = Inventory(self.inventory)
         self.race = self.plugin.search(self.race)
         self.classes = [self.plugin.search(cls) for cls in self.classes]
+        # cnt.AutoAggregator.__init__(self, self.race, *self.classes, self.background, self.inventory)
 
 
 
-    # def __getattr__(self, attr):
-    #     if attr in {'wis', 'cha', 'int', 'dex', 'con', 'str'}:
-    #         return self.scores[attr]
-    #     raise AttributeError("Object of type %s has no attribute '%s'" % (self.__class__, attr))
+class AbilityScore(rpg.Attribute):
+    def __init__(self, value):
+        self.value = value
+
+    @property
+    def score(self):
+        return self.value
+
+    @score.setter
+    def score(self, value):
+        self.value = value
+
+    @property
+    def mod(self):
+        return (self.value - 10) // 2
 
 
 
-
-
-# class AbilityScore(rpg.Attribute):
-#     def __init__(self, value):
-#         self.value = value
-
-#     @property
-#     def score(self):
-#         return self.value
-
-#     @score.setter
-#     def score(self, value):
-#         self.value = value
-
-#     @property
-#     def mod(self):
-#         return (self.value - 10) // 2
-
-# class Skill(rpg.Attribute):
-#     def __init__(self, name, ability=None, proficient=False, expertise=False):
-#         self.name = name
-#         self.ability = ability
-
-#     def __repr__(self):
-#         return self.name
+class Skill(rpg.Attribute):
+    def __init__(self, ability, name=''):
+        self.ability = ability
 
 
 
@@ -123,4 +119,3 @@ class DND5_Character(rpg.Character):
 #     def __init__(self, **kwargs):
 #         rpg.Object.__init__(self, **kwargs)
 #         Inventory.__init__(self)
-

@@ -15,3 +15,7 @@ include:
    adjustment, trackers, etc.)
 4. Automatic rolling for powers, saving throws, attacks, and the like
 5. Database of races, classes, items, creatures, etc. included in system
+
+External dependencies:  Python 3, PyYAML, and Kivy
+
+Code licensed under GPLv3
