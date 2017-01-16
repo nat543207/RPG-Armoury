@@ -1,5 +1,5 @@
 Screen:
-    name: 'Display'
+
     GridLayout:
         width: 500
         cols: 2
@@ -15,8 +15,20 @@ Screen:
 <CharacterInfoPane@GridLayout>:
     rows: 2
     orientation: 'vertical'
-    Panel:
-        text: 'Character Image\nor\nAbility Scores'
+    GridLayout:
+        cols: 3
+        Panel:
+            text: 'STR\n%s' % app.character.str
+        Panel:
+            text: 'DEX\n%s' % app.character.dex
+        Panel:
+            text: 'CON\n%s' % app.character.con
+        Panel:
+            text: 'INT\n%s' % app.character.int
+        Panel:
+            text: 'WIS\n%s' % app.character.wis
+        Panel:
+            text: 'CHA\n%s' % app.character.cha
     GridLayout:
         id: 'StatBox'
         rows: 5

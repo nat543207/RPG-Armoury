@@ -25,15 +25,16 @@ class Item(rpg.Object):
 
     def __iter__(self):
         try:
-            return iter(self.contents)
+            for c in self.contents:
+                yield c
         except AttributeError:
-            return (i for i in [])
+            raise StopIteration
 
 
 
 
 
-class DND5_Character(rpg.Character):
+class DND5_Character(rpg.Character, cnt.AutoAggregator):
     name = 'No-Name McGee'
     race = None
     classes = []
@@ -41,7 +42,7 @@ class DND5_Character(rpg.Character):
     scores = {'int':10, 'wis':10, 'str':10, 'con':10, 'dex':10, 'cha':10}
     inventory = []
     xp = 0
-    hitdice = {'d4':0, 'd6':0, 'd8':0, 'd12':0}
+    #hitdice = {'d6':0, 'd8':0, 'd10':0, 'd12':0}
     hp = 0
     hpmax = 1
     spellslots = (0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -67,9 +68,9 @@ class DND5_Character(rpg.Character):
             }
     spells_prepared = {}
     spellbook = {}
-    speed = 0
+    #speed = 0
     feats = {}
-    ac = 0
+    #ac = 0
     languages = {}
     proficiencies = {}
     powers = {}
@@ -83,12 +84,12 @@ class DND5_Character(rpg.Character):
         scores = {i : AbilityScore(j) for i,j in kwargs.pop('scores', {}).items()}
         rpg.Character.__init__(self, **scores, **kwargs)
         # self.plugin = sys.modules['plugins.%s' % self.plugin]
-        self.skills = {i : Skill(getattr(self, j)) for i,j in self.skills.items()}
+        self.skills = {i : Skill(getattr(self, j), i) for i,j in self.skills.items()}
         self.inventory = Inventory(self.inventory)
         self.race = self.plugin.search(self.race)
         self.classes = [self.plugin.search(cls) for cls in self.classes]
         # cnt.AutoAggregator.__init__(self, self.race, *self.classes, self.background, self.inventory)
-
+        # cnt.AutoAggregator.__init__(self, self.inventory)
 
 
 class AbilityScore(rpg.Attribute):
@@ -107,12 +108,17 @@ class AbilityScore(rpg.Attribute):
     def mod(self):
         return (self.value - 10) // 2
 
+    def __str__(self):
+        return str(self.value)
+
 
 
 class Skill(rpg.Attribute):
     def __init__(self, ability, name=''):
         self.ability = ability
-
+        self.name = name
+    def __str__(self):
+        return str("%3s  │  %s" % (self.ability.mod, self.name))
 
 
 # class Container(rpg.Object, Inventory):

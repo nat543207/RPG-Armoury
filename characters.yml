@@ -17,14 +17,12 @@ Fingon Anwamane:
     ac: 12
     hitdice: {'d6':5}
     inventory:
-        A pretzle with a snake in it:
-          att1: 5
         Bastard Sword:
           att2: 6
         Legitimate Sword:
           att1: -12
-        Sock, worn:
-          smell: funky
+        A pretzle with a snake in it:
+          att1: 5
         Sack of Sacking:
           contents:
               Sack:
@@ -36,6 +34,8 @@ Fingon Anwamane:
                 resistance: fire
               My head:
                 race: elf
+        Sock, worn:
+          smell: funky
 
 Wendelar Vorgental:
     plugin: dnd5
