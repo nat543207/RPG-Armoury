@@ -42,7 +42,7 @@ class DND5_Character(rpg.Character, cnt.AutoAggregator):
     scores = {'int':10, 'wis':10, 'str':10, 'con':10, 'dex':10, 'cha':10}
     inventory = []
     xp = 0
-    #hitdice = {'d6':0, 'd8':0, 'd10':0, 'd12':0}
+    hitdice = {'d6':0, 'd8':0, 'd10':0, 'd12':0}
     hp = 0
     hpmax = 1
     spellslots = (0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -82,6 +82,7 @@ class DND5_Character(rpg.Character, cnt.AutoAggregator):
     def __init__(self, **kwargs):
         # Make ability scores into top-level attributes
         scores = {i : AbilityScore(j) for i,j in kwargs.pop('scores', {}).items()}
+        self.hitdice.update(kwargs.pop('hitdice'))
         rpg.Character.__init__(self, **scores, **kwargs)
         # self.plugin = sys.modules['plugins.%s' % self.plugin]
         self.skills = {i : Skill(getattr(self, j), i) for i,j in self.skills.items()}
