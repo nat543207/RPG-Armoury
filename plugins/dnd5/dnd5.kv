@@ -42,9 +42,20 @@ Screen:
         Panel:
             background_color: 0.7, 0.7, 0, 1
             text: app.character.xp
-        Panel:
-            background_color: 0, 0, 0.5, 1
-            text: app.character.hitdice
+        GridLayout:
+            cols: 4
+            Panel:
+                background_color: 0, 0, 0.5, 1
+                text: "%sd6" % app.character.hitdice['d6']
+            Panel:
+                background_color: 0, 0, 0.5, 1
+                text: "%sd8" % app.character.hitdice['d8']
+            Panel:
+                background_color: 0, 0, 0.5, 1
+                text: "%sd10" % app.character.hitdice['d10']
+            Panel:
+                background_color: 0, 0, 0.5, 1
+                text: "%sd12" % app.character.hitdice['d12']
         GridLayout:
             cols: 3
             Panel:

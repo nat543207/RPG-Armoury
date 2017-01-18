@@ -5,6 +5,7 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.treeview import TreeView, TreeViewLabel
 from kivy.uix.label import Label
+from kivy.clock import Clock
 import yaml
 import importlib
 
@@ -100,6 +101,18 @@ class Guage(CappedCounter):
             self.value += 1
         except ValueError:
             pass
+
+class RepeaterButton(Button):
+    def on_hold(self, func, *args, **kwargs):
+        def __func(*args, **kwargs):
+            func(*args, **kwargs)
+            Clock.schedule_once((lambda *_, **__: self.dispatch('on_press') if self.state == 'down' else None), 3*self.min_state_time)
+        return __func
+
+    def fbind(self, attr, func, *args, **kwargs):
+        if attr == 'on_press':
+            func = self.on_hold(func)
+        return super().fbind(attr, func, *args, **kwargs)
 
 
 class TreeTable(TreeView):

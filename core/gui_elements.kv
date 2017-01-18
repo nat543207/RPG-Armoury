@@ -8,6 +8,7 @@
         TreeView:
             size_hint_y: None
 
+
 <InfoTable@BoxLayout>:
     orientation: 'vertical'
     data: []
@@ -38,13 +39,10 @@
             size: (root.value / root.max * self.size[0], self.size[1]) if 0 < root.value else (0, 0)
 
 <PosNegGuage@RectangularGuage>:
-    empty_color: 0, 0, 0, 1
-    pos_color: 0, 0,5, 0, 1
-    neg_color: 0.5, 0, 0, 1
-    background_color: self.empty_color
+    background_color: 0, 0, 0, 1
     canvas.before:
         Color:
-            rgba: self.pos_color if 0 < self.value else self.neg_color
+            rgba: (.5*(self.max - self.value)/self.max, 0.5, 0, 1) if 0 < self.value else (0.5, .5*(self.min - self.value)/self.min, 0, 1)
         Rectangle:
             pos: self.pos if 0 < self.value else (self.pos[0] + self.size[0], self.pos[1])
             size: (root.value / root.max * self.size[0], self.size[1])
@@ -53,7 +51,7 @@
     max: 5
     value: 3
     min: -3
-    Button:
+    RepeaterButton:
         size_hint_x: None
         width: root.size[1]
         on_press: guage.decr()
@@ -63,10 +61,10 @@
         max: root.max
         min: root.min
         value: root.value
-    Button:
+    RepeaterButton:
         size_hint_x: None
         width: root.size[1]
-        on_press: guage.incr()#; if self.press: self.dispatch('on_press')
+        on_press: guage.incr()
         text: '+'
 
 
